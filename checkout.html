@@ -7,7 +7,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ogani | Template</title>
+    <title>Ogani | Checkout</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -253,19 +253,9 @@
                 <form action="#">
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Fist Name<span>*</span></p>
-                                        <input type="text">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Last Name<span>*</span></p>
-                                        <input type="text">
-                                    </div>
-                                </div>
+                            <div class="checkout__input">
+                                <p>Name<span>*</span></p>
+                                <input type="text">
                             </div>
                             <div class="checkout__input">
                                 <p>Country<span>*</span></p>
@@ -273,19 +263,6 @@
                             </div>
                             <div class="checkout__input">
                                 <p>Address<span>*</span></p>
-                                <input type="text" placeholder="Street Address" class="checkout__input__add">
-                                <input type="text" placeholder="Apartment, suite, unite ect (optinal)">
-                            </div>
-                            <div class="checkout__input">
-                                <p>Town/City<span>*</span></p>
-                                <input type="text">
-                            </div>
-                            <div class="checkout__input">
-                                <p>Country/State<span>*</span></p>
-                                <input type="text">
-                            </div>
-                            <div class="checkout__input">
-                                <p>Postcode / ZIP<span>*</span></p>
                                 <input type="text">
                             </div>
                             <div class="row">
@@ -302,6 +279,8 @@
                                     </div>
                                 </div>
                             </div>
+                            <br><br><br>
+                            
                             <div class="checkout__input__checkbox">
                                 <label for="acc">
                                     Create an account?
@@ -311,19 +290,27 @@
                             </div>
                             <p>Create an account by entering the information below. If you are a returning customer
                                 please login at the top of the page</p>
-                            <div class="checkout__input">
+                            <div class="checkout__input" id="passwordDiv" style="display: none">
                                 <p>Account Password<span>*</span></p>
-                                <input type="text">
+                                <input type="password">
                             </div>
+                            <br><br><br>
+
                             <div class="checkout__input__checkbox">
                                 <label for="diff-acc">
                                     Ship to a different address?
-                                    <input type="checkbox" id="diff-acc">
+                                    <input type="checkbox" id="diff-acc" >
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
+                            <div class="checkout__input" id="shipping-address-div" style="display: none">
+                                <p>Shipping Address<span>*</span></p>
+                                <input type="text">
+                            </div>
+                            <br><br><br>
+                            
                             <div class="checkout__input">
-                                <p>Order notes<span>*</span></p>
+                                <p>Order notes</p>
                                 <input type="text"
                                     placeholder="Notes about your order, e.g. special notes for delivery.">
                             </div>
@@ -339,13 +326,6 @@
                                 </ul>
                                 <div class="checkout__order__subtotal">Subtotal <span>$750.99</span></div>
                                 <div class="checkout__order__total">Total <span>$750.99</span></div>
-                                <div class="checkout__input__checkbox">
-                                    <label for="acc-or">
-                                        Create an account?
-                                        <input type="checkbox" id="acc-or">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
                                 <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
                                     ut labore et dolore magna aliqua.</p>
                                 <div class="checkout__input__checkbox">
@@ -449,6 +429,7 @@
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/checkout.js"></script>
 
  
 
