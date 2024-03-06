@@ -1,4 +1,4 @@
-<?php include './config/constant.php' ?>
+<?php require './config/constant.php' ?>
 <!DOCTYPE html>
 <html lang="zxx">
 
