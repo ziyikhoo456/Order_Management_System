@@ -258,7 +258,7 @@
                             </thead>
                             <tbody>
                                     <?php
-                                    $_SESSION['cart']=array(array(2,4));
+                                    $_SESSION['cart']=array(array("product"=>"2","quantity"=>4));
                                     foreach($_SESSION['cart'] as $item):
                                         $sqlcartprod = mysqli_query(db(),"SELECT * FROM products WHERE prodID='".$item[0]."' ");
                                         $rowcartprod = mysqli_fetch_array($sqlcartprod);
