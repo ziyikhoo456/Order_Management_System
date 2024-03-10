@@ -26,7 +26,7 @@
 </head>
 
 <body>
-    <?php $_SESSION['cart'] = array(array('product'=>'2','quantity'=>5));?>
+    <?php $_SESSION['cart'] = array(array('product'=>'2','quantity'=>5),array('product'=>'2','quantity'=>3));?>
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
