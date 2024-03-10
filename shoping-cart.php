@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php require './config/constant.php' ?>
-<?php$_SESSION['cart'] = array(array('product'=>'2','quantity'=>5));?>
+
 <html lang="zxx">
 
 <head>
@@ -26,6 +26,7 @@
 </head>
 
 <body>
+    <?php $_SESSION['cart'] = array(array('product'=>'2','quantity'=>5));?>
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
