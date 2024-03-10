@@ -1,6 +1,6 @@
 <?php
     //Start Session
-    // session_start();
+    session_start();
 
     define('SITEURL','http://localhost/ogani-master/');
     define('LOCALHOST','localhost');
