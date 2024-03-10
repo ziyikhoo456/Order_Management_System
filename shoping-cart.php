@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<?php require('/config/constant.php') ?>
+<?php require('/config/constant.php') 
+$_SESSION['cart'] = array(array('product'=>'2','quantity'=>5));?>
 <html lang="zxx">
 
 <head>
