@@ -268,25 +268,24 @@
                                     <td class="shoping__cart__item">
                                         <img src="<?=$rowcartprod['imageName']?>" width="101" alt="">
                                         <h5>
-                                            <?echo $item[0]."hello".$item[1];?>
-                                            <?=$rowcartprod['prodName']?>
+                                            <?php =$rowcartprod['prodName']?>
                                         </h5>
                                     </td>
                                     <td class="shoping__cart__price">
                                         <span id="price">
-                                            <?=$rowcartprod['prodPrice']?>
+                                            <?php =$rowcartprod['prodPrice']?>
                                         </span>
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
                                             <div class="pro-qty">
                                                 <input type="text" style="cursor: default" readonly
-                                                    value="<?=$item[1]?>">
+                                                    value="<?php =$item[1]?>">
                                             </div>
                                         </div>
                                     </td>
                                     <td class="shoping__cart__total" id="totalprice">
-                                        <?=$rowcartprod['prodPrice']*$item['quantity']>
+                                        <?php =$rowcartprod['prodPrice']*$item['quantity']>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
