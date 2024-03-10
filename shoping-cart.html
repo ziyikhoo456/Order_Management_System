@@ -257,12 +257,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
-                                    $_SESSION['cart']=array(array("product"=>"2","quantity"=>4));
-                                    foreach($_SESSION['cart'] as $item):
-                                        $sqlcartprod = mysqli_query(db(),"SELECT * FROM products WHERE prodID='".$item[0]."' ");
-                                        $rowcartprod = mysqli_fetch_array($sqlcartprod);
-                                        ?>
+                                <?php 
+                                $_SESSION['cart']=array(array("product"=>"2","quantity"=>5));
+                                foreach($_SESSION['cart'] as $item):
+                                $sqlcartprod = mysqli_query($conn,"SELECT * FROM product WHERE
+                                prodID='".$item['product']."' ");
+                                $rowcartprod = mysqli_fetch_array($sqlcartprod);
+                                
                                 <tr>
                                     <td class="shoping__cart__item">
                                         <img src="<?=$rowcartprod['imageName']?>" width="101" alt="">
@@ -285,7 +286,7 @@
                                         </div>
                                     </td>
                                     <td class="shoping__cart__total" id="totalprice">
-                                        <?=$rowcartprod['price']*$item[1]?>
+                                        <?=$rowcartprod['prodPrice']*$item['quantity']>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
