@@ -294,7 +294,7 @@
                                     </td>
                                 </tr>';
                                 endforeach;
-                                $realtotal = $total
+                                $realtotal = $total;
                                 ?>
                             </tbody>
                         </table>
@@ -324,8 +324,8 @@
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Subtotal <span>$<?php echo $total?></span></li>
-                            <li>Total <span>$<<?php echo $realtotal?>/span></li>
+                            <li>Subtotal <span>$<?php echo $total;?></span></li>
+                            <li>Total <span>$<<?php echo $realtotal;?>/span></li>
                         </ul>
                         <a href="checkout.html" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
