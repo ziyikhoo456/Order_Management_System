@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php require './config/constant.php' ?>
-<?php$_SESSION['cart'] = array(array('product'=>'2','quantity'=>5));
-?>
+<?php$_SESSION['cart'] = array(array('product'=>'2','quantity'=>5));?>
 <html lang="zxx">
 
 <head>
@@ -260,8 +259,8 @@
                             </thead>
                             <tbody>
                                 <?php 
-                                
-                                foreach($_SESSION['cart'] as $item):
+                                $cart = $_SESSION['cart'];
+                                foreach($cart as $item):
                                 $sqlcartprod = mysqli_query($conn,"SELECT * FROM product WHERE
                                 prodID='".$item['product']."' ");
                                 $rowcartprod = mysqli_fetch_array($sqlcartprod);
