@@ -263,32 +263,32 @@
                                 $sqlcartprod = mysqli_query($conn,"SELECT * FROM product WHERE
                                 prodID='".$item['product']."' ");
                                 $rowcartprod = mysqli_fetch_array($sqlcartprod);
-                                
+                                echo '
                                 <tr>
                                     <td class="shoping__cart__item">
                                         <img src="img/cart/cart-1.jpg" width="101" alt="">
-                                        <h5>
-                                            <?php =$rowcartprod['prodName']?>
+                                        <h5>'.
+                                            $rowcartprod['prodName'].'
                                         </h5>
                                     </td>
                                     <td class="shoping__cart__price">
-                                        <span id="price">
-                                            <?php =$rowcartprod['prodPrice']?>
+                                        <span id="price">'.
+                                             $rowcartprod['prodPrice'].'
                                         </span>
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
                                             <div class="pro-qty">
                                                 <input type="text" style="cursor: default" readonly
-                                                    value="<?php =$item[1]?>">
+                                                    value="'.$item[1].'">
                                             </div>
                                         </div>
                                     </td>
                                     <td class="shoping__cart__total" id="totalprice">
-                                        <?php =$rowcartprod['prodPrice']*$item['quantity']>
+                                        '.$rowcartprod['prodPrice']*$item['quantity'].'
                                     </td>
-                                </tr>
-                                <?php endforeach; ?>
+                                </tr>'
+                                endforeach; ?>
                                 <tr>
                                     <td class="shoping__cart__item">
                                         <img src="img/cart/cart-1.jpg" alt="">
