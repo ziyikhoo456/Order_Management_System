@@ -260,6 +260,7 @@
                                     <?php
                                     $_SESSION['cart']=array(array(2,4));
                                     foreach($_SESSION['cart'] as $item):
+                                        echo $item;
                                         $sqlcartprod = mysqli_query(db(),"SELECT * FROM products WHERE prodID='".$item[0]."' ");
                                         $rowcartprod = mysqli_fetch_array($sqlcartprod);
                                         ?>
@@ -272,7 +273,7 @@
                                     </td>
                                     <td class="shoping__cart__price">
                                         <span id="price">
-                                            <?=$rowcartprod['price']?>
+                                            <?=$rowcartprod['prodPrice']?>
                                         </span> 
                                     </td>
                                     <td class="shoping__cart__quantity">
