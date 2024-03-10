@@ -219,6 +219,16 @@
             }
         }
         $button.parent().find('input').val(newVal);
+        var proQty = $('.pro-qty');
+
+
+        var Price = document.getElementById('priceprod').innerText;
+        var Tprice = document.getElementById('totalprice');
+        
+        if (Price[i] > 0) {
+            Tprice.textContent = (Price[i] * newVal) + ' azn';
+        }
+
     });
 
 })(jQuery);
