@@ -260,7 +260,6 @@
                                     <?php
                                     $_SESSION['cart']=array(array(2,4));
                                     foreach($_SESSION['cart'] as $item):
-                                        echo $item[0]."hello".$item[1];
                                         $sqlcartprod = mysqli_query(db(),"SELECT * FROM products WHERE prodID='".$item[0]."' ");
                                         $rowcartprod = mysqli_fetch_array($sqlcartprod);
                                         ?>
@@ -268,6 +267,7 @@
                                     <td class="shoping__cart__item">
                                         <img src="<?=$rowcartprod['imageName']?>" width="101" alt="">
                                         <h5>
+                                            echo $item[0]."hello".$item[1];
                                             <?=$rowcartprod['prodName']?>
                                         </h5>
                                     </td>
