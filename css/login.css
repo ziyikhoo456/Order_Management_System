@@ -1,0 +1,17 @@
+html { 
+	background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../img/loginBG.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+    /* background: rgba(0, 0, 0, 0.1); */
+}
+
+.opacityInput{
+    background: rgba(255, 255, 255, 0.167) !important;
+}
+
+::placeholder {
+    color: white !important;
+    opacity: 1; /* Firefox */
+  }
