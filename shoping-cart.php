@@ -314,7 +314,7 @@
                         <div class="shoping__discount">
                             <h5>Discount Codes</h5>
                             <form action="" method = "POST">
-                                <input type="text" id="discount_code" placeholder="Enter your coupon code">
+                                <input type="text" name="discount_code" placeholder="Enter your coupon code">
                                 <button type="submit" class="site-btn">APPLY COUPON</button>
                             </form>
                         </div>
