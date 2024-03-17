@@ -327,20 +327,7 @@
                             <li>Subtotal <span>$<?php echo $total;?></span></li>
                             <li>Total <span>$<?php 
                             
-                            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                                // Retrieve data using POST method
-                                $discount_code = $_POST["discount_code"];
-                                if ($discount_code == "elecpro40"){
-                                echo $realtotal*0.6;
-                                }
-                                else{
-                                    echo $realtotal;
-                                    echo "<br> Invalid Discount Code.";
-                                }
-                            }
-                            else{
-                                echo $realtotal;
-                            }
+                            
                             ?></span></li>
                         </ul>
                         <a href="checkout.html" class="primary-btn">PROCEED TO CHECKOUT</a>
