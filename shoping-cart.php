@@ -335,7 +335,7 @@
                                 }
                                 else{
                                     echo $realtotal;
-                                    echo "<br> Invalid Discount Code." 
+                                    echo "<br> Invalid Discount Code.";
                                 }
                             }
                             else{
