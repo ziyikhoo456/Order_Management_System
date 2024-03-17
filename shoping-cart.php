@@ -289,7 +289,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="shoping__cart__total" id="totalprice">
+                                    <td class="shoping__cart__total" id="'.$item['product'].'price">
                                         '.$rowcartprod['prodPrice']*$item['quantity'].'
                                     </td>
                                 </tr>';
@@ -313,8 +313,8 @@
                     <div class="shoping__continue">
                         <div class="shoping__discount">
                             <h5>Discount Codes</h5>
-                            <form action="#">
-                                <input type="text" placeholder="Enter your coupon code">
+                            <form action="" method = "POST">
+                                <input type="text" id="discount_code" placeholder="Enter your coupon code">
                                 <button type="submit" class="site-btn">APPLY COUPON</button>
                             </form>
                         </div>
@@ -325,7 +325,19 @@
                         <h5>Cart Total</h5>
                         <ul>
                             <li>Subtotal <span>$<?php echo $total;?></span></li>
-                            <li>Total <span>$<?php echo $realtotal;?></span></li>
+                            <li>Total <span>$<?php 
+                            
+                            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                // Retrieve data using POST method
+                                $discount_code = $_POST["discount_code"];
+                                if ($discount_code == "elecpro40"){
+                                echo $realtotal*0.6;
+                                }
+                            }
+                            else{
+                                echo $realtotal;
+                            }
+                            ?></span></li>
                         </ul>
                         <a href="checkout.html" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
