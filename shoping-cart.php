@@ -333,6 +333,10 @@
                                 if ($discount_code == "elecpro40"){
                                 echo $realtotal*0.6;
                                 }
+                                else{
+                                    echo $realtotal;
+                                    echo "<br> Invalid Discount Code." 
+                                }
                             }
                             else{
                                 echo $realtotal;
