@@ -315,6 +315,7 @@
                             <h5>Discount Codes</h5>
                             <form id="discount_code">
                                 <input type="text" name="discount" placeholder="Enter your coupon code">
+                                <input type="hidden" id="realtotal" name="realtotal" value="<?php echo $realtotal; ?>">
                                 <button type="submit" class="site-btn">APPLY COUPON</button>
                             </form>
                         </div>
