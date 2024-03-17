@@ -313,8 +313,8 @@
                     <div class="shoping__continue">
                         <div class="shoping__discount">
                             <h5>Discount Codes</h5>
-                            <form action="" method = "POST">
-                                <input type="text" name="discount_code" placeholder="Enter your coupon code">
+                            <form id="discount_code">
+                                <input type="text" name="discount" placeholder="Enter your coupon code">
                                 <button type="submit" class="site-btn">APPLY COUPON</button>
                             </form>
                         </div>
@@ -325,10 +325,7 @@
                         <h5>Cart Total</h5>
                         <ul>
                             <li>Subtotal <span>$<?php echo $total;?></span></li>
-                            <li>Total <span>$<?php 
-                            
-                            
-                            ?></span></li>
+                            <li>Total <span id="result">$<?php echo $realtotal; ?></span></li>
                         </ul>
                         <a href="checkout.html" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
@@ -422,7 +419,30 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
 
+    <script>
+    $(document).ready(function() {
+        // Submit form using AJAX
+        $('#discount_code').submit(function(e) {
+            e.preventDefault(); // Prevent default form submission
 
+            // Get form data
+            var formData = $(this).serialize();
+
+            // Send AJAX request
+            $.ajax({
+                type: 'POST',
+                url: 'discount.php', // PHP script to handle form submission
+                data: formData,
+                success: function(response) {
+                    $('#result').html(response); // Update result div with response from server
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText); // Log error message if AJAX request fails
+                }
+            });
+        });
+    });
+    </script>                            
 </body>
 
 </html>
