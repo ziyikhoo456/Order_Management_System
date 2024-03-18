@@ -1,11 +1,5 @@
-// function ShowHideDiv(checkbox) {
-//   var division = document.getElementById("passwordDiv");
-//   division.style.display = checkbox.checked ? "block" : "none";
-// }
 
 $(document).ready(function(){
-
-  
 
   $(function () {
     //unchecked checkbox when page load

@@ -18,48 +18,31 @@
 <body class="bg-transparent">
     <div class="d-flex align-items-center min-vh-100">
         <div class="container">
+            <h3 class="text-white text-center">Have an account?</h3>    
             <div class="row justify-content-center">
-                <div class="col-3">
-                    <h3 class="text-white text-center">Have an account?</h3>
-                    <form>
-                        <div class="my-4">
-                            <div class="form-group">
-                                <input type="email" class="form-control opacityInput border-0 text-white" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control opacityInput border-0 text-white" id="exampleInputPassword1" placeholder="Password">
-                            </div>
-                            <button type="submit" class="btn btn-light  w-100">Sign In</button>
+                <form>
+                    <div class="my-3">
+                        <div class="form-group">
+                            <input type="email" class="form-control opacityInput border-0 text-white" id="email" aria-describedby="emailHelp" placeholder="Username">
                         </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="rememberMeCheck">
-                            <label class="form-check-label text-white" for="rememberMeCheck">Remember Me</label>
+                        <div class="form-group">
+                            <p class="input-group">
+                                <input type="password" class="form-control opacityInput border-0 text-white" id="password" placeholder="Password">
+                                <span class="input-group-addon border-0 opacityInput" id="togglePassword">
+                                    <i class="fa fa-eye text-white" style="cursor: pointer"></i>
+                                </span>
+                            </p>
                         </div>
-                    </form>
-                </div>
+                        <button type="submit" class="btn btn-light  w-100">Sign In</button>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="rememberMeCheck">
+                        <label class="form-check-label text-white" for="rememberMeCheck">Remember Me</label>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    
-
-
-    <!-- <div class="text-center">
-        <h3 class="text-white">Have an account?</h3>
-
-        <form>
-            <div class="form-group w-25">
-                <input type="email" class="form-control opacityInput border-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username">
-            </div>
-            <div class="form-group w-25">
-                <input type="password" class="form-control opacityInput border-0" id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <button type="submit" class="btn btn-primary  w-25">Sign In</button>
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="rememberMeCheck">
-                <label class="form-check-label text-white" for="rememberMeCheck">Remember Me</label>
-            </div>
-        </form>
-    </div> -->
     
     <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>
@@ -69,6 +52,6 @@
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/login.js"></script>
 </body>
 </html>
