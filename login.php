@@ -20,7 +20,7 @@
         <div class="container">
             <h3 class="text-white text-center">Have an account?</h3>    
             <div class="row justify-content-center">
-                <form>
+                <form action="index.html">
                     <div class="my-3">
                         <div class="form-group">
                             <input type="email" class="form-control opacityInput border-0 text-white" id="email" aria-describedby="emailHelp" placeholder="Username">
