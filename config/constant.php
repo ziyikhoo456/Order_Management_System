@@ -5,7 +5,7 @@
     define('SITEURL','http://localhost/ogani-master/');
     define('LOCALHOST','localhost');
     define('DB_USERNAME','root');
-    define('DB_PASSWORD','root');
+    define('DB_PASSWORD','');
     define('DB_NAME','electronic_order');
 
     $conn = mysqli_connect(LOCALHOST,DB_USERNAME,DB_PASSWORD,DB_NAME) or die(mysqli_error($conn)); //database connection, default is root/blank

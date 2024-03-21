@@ -1,9 +1,7 @@
 <?php 
-
-
+    require('config/constant.php');
+    session_start();
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -68,17 +66,7 @@
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
                 <li class="active"><a href="./index.html">Home</a></li>
-                <li><a href="./shop-grid.html">Shop</a></li>
-                <li><a href="#">Pages</a>
-                    <ul class="header__menu__dropdown">
-                        <li><a href="./shop-details.html">Shop Details</a></li>
-                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                        <li><a href="./checkout.php">Check Out</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
-                    </ul>
-                </li>
-                <li><a href="./blog.html">Blog</a></li>
-                <li><a href="./contact.html">Contact</a></li>
+                
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -145,18 +133,7 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
-                            <li><a href="./shop-grid.html">Shop</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="header__menu__dropdown">
-                                    <li><a href="./shop-details.html">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./checkout.php">Check Out</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="./blog.html">Blog</a></li>
-                            <li><a href="./contact.html">Contact</a></li>
+                            <li class="active"><a href="./index.php">Home</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -285,135 +262,48 @@
                     <div class="featured__controls">
                         <ul>
                             <li class="active" data-filter="*">All</li>
-                            <li data-filter=".headphone">HeadPhones</li>
-                            <li data-filter=".powerbank">PowerBanks</li>
-                            <li data-filter=".smartwatch">Smartwatch</li>
-                            <li data-filter=".cable">Cables</li>
+                            <li data-filter=".Headphone">HeadPhone</li>
+                            <li data-filter=".Powerbank">PowerBank</li>
+                            <li data-filter=".Smartwatch">Smartwatch</li>
+                            <li data-filter=".Cable">Cable</li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="row featured__filter">
-                <div class="col-lg-3 col-md-4 col-sm-6 mix powerbank">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature2-1.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">PIXY GO MAGSAFE<br>WIRELESS POWER BANK</a></h6>
-                            <h5>RM229</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix headphone">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature2-2.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">JBL TUNE 710BT<br>Wireless Over-Ear Headphones</a></h6>
-                            <h5>RM249.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix powerbank">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature2-3.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Mophie Essential Powerbank</a></h6>
-                            <h5>RM229.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix smartwatch">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature2-4.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">TYME TSWC20PROOG-04<br>Orange Smart Watch</a></h6>
-                            <h5>RM209.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix cable">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature2-5.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Belkin BoostCharge Braided<br>USB-C Cable</a></h6>
-                            <h5>RM70.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix cable">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature2-6.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">RS PRO Male 3.5mm Stereo Jack</a></h6>
-                            <h5>RM6.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix smartwatch">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature2-7.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Apple Watch SE<br>(GPS & Cellular)</a></h6>
-                            <h5>RM649.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix headphone">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature2-8.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Audio Technica ATH-M50x <br>Professional Monitor Headphones</a></h6>
-                            <h5>RM739.00</h5>
-                        </div>
-                    </div>
-                </div>
+                <?php 
+                
+                    $sel_query="SELECT prodID, prodName, prodStock, prodPrice, imageName, catName
+                    FROM Product, Category
+                    WHERE Product.categoryID = Category.categoryID
+                    ORDER BY prodID asc;";
+                    $result = mysqli_query($conn, $sel_query);
+                    $currencySymbol = "RM";
+
+                    while($row = mysqli_fetch_assoc($result)) {
+
+                        $prodID = $row["prodID"];
+                        $catName = $row["catName"];
+                        $prodName = $row["prodName"];
+                        $prodPrice = $row["prodPrice"];
+                        $imgPath = "img/featured/" . $row["imageName"];
+
+                        echo "
+                            <div class=\"col-lg-3 col-md-4 col-sm-6 mix $catName\">
+                            <a href=\"shop-details.php?prodID=$prodID\">
+                                <div class=\"featured__item\">
+                                    <div class=\"featured__item__pic set-bg\" data-setbg=\"$imgPath\"></div>
+                                    <div class=\"featured__item__text\">
+                                        <h6>$prodName</h6>
+                                        <h5> $currencySymbol $prodPrice</h5>
+                                    </div>
+                                </div>
+                            </a>
+                            </div>
+                       ";
+                    }
+                    
+                ?> 
             </div>
         </div>
     </section>
@@ -425,12 +315,12 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="img/banner/banner-1.jpg" alt="">
+                        <img src="img/banner/banner2-1.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="img/banner/banner-2.jpg" alt="">
+                        <img src="img/banner/banner2-2.jpg" alt="">
                     </div>
                 </div>
             </div>
