@@ -33,8 +33,15 @@
                                 </span>
                             </p>
                         </div>
-                        <button type="submit" class="btn btn-light  w-100">Sign In</button>
-                    </div>
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" name="signInBtn" class="btn btn-light  w-100">Sign In</button>
+                            </div>
+                            <div class="col">
+                                <button type="submit" name="signUpBtn" class="btn btn-dark  w-100">Sign Up</button>
+                            </div>
+                        </div>
+                        </div>
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="rememberMeCheck">
                         <label class="form-check-label text-white" for="rememberMeCheck">Remember Me</label>

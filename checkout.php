@@ -280,23 +280,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <br><br><br>
+                            <br><br>
                             
-                            <div class="checkout__input__checkbox">
-                                <label for="acc">
-                                    Create an account?
-                                    <input type="checkbox" id="acc">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <p>Create an account by entering the information below. If you are a returning customer
-                                please login at the top of the page</p>
-                            <div class="checkout__input" id="passwordDiv" style="display: none">
-                                <p>Account Password<span>*</span></p>
-                                <input type="password">
-                            </div>
-                            <br><br><br>
-
                             <div class="checkout__input__checkbox">
                                 <label for="diff-acc">
                                     Ship to a different address?
@@ -308,7 +293,7 @@
                                 <p>Shipping Address<span>*</span></p>
                                 <input type="text">
                             </div>
-                            <br><br><br>
+                            <br><br>
                             
                             <div class="checkout__input">
                                 <p>Order notes</p>
@@ -331,15 +316,8 @@
                                     ut labore et dolore magna aliqua.</p>
                                 <div class="checkout__input__checkbox">
                                     <label for="payment">
-                                        Check Payment
+                                        Pay by Cash
                                         <input type="checkbox" id="payment">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <div class="checkout__input__checkbox">
-                                    <label for="paypal">
-                                        Paypal
-                                        <input type="checkbox" id="paypal">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
