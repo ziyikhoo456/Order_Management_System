@@ -20,10 +20,11 @@
         <div class="container">
             <h3 class="text-white text-center">Have an account?</h3>    
             <div class="row justify-content-center">
-                <form action="index.html">
+                <!-- Sign In / Sign Up -->
+                <form name="sign-in-sign-up" action="index.html" method="post">
                     <div class="my-3">
                         <div class="form-group">
-                            <input type="email" class="form-control opacityInput border-0 text-white" id="email" aria-describedby="emailHelp" placeholder="Username">
+                            <input type="text" class="form-control opacityInput border-0 text-white" id="username" placeholder="Username">
                         </div>
                         <div class="form-group">
                             <p class="input-group">
