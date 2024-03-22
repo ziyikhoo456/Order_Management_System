@@ -18,7 +18,10 @@
 <body class="bg-transparent">
     <div class="d-flex align-items-center min-vh-100">
         <div class="container">
-            <h3 class="text-white text-center">Have an account?</h3>    
+            <h1 class="text-white text-center">Have an account?</h3>    
+            <div class="text-white text-center" style="font-size:14px">
+                New user? <a href=""><span style="color:Aqua;">Register</span></a>
+            </div>
             <div class="row justify-content-center">
                 <!-- Sign In / Sign Up -->
                 <form name="sign-in-sign-up" action="index.html" method="post">
@@ -34,19 +37,13 @@
                                 </span>
                             </p>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <button type="submit" name="signInBtn" class="btn btn-light  w-100">Sign In</button>
-                            </div>
-                            <div class="col">
-                                <button type="submit" name="signUpBtn" class="btn btn-dark  w-100">Sign Up</button>
-                            </div>
-                        </div>
+                            <button type="submit" name="signInBtn" class="btn btn-light  w-100">Sign In</button>
                         </div>
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="rememberMeCheck">
                         <label class="form-check-label text-white" for="rememberMeCheck">Remember Me</label>
                     </div>
+                    
                 </form>
             </div>
         </div>
