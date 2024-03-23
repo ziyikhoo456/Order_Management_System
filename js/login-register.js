@@ -13,10 +13,11 @@ $(document).ready(function() {
     });
 
     $("#registerBtn").on('click',function(event){
-        console.log($("#phone").val());
-        let newPhone = $("#phone").val().slice(0,-1);
-        $("#phone").val(newPhone);
-        console.log($("#phone").val());
+        if(($("#phone").val().slice(-1) == '_'))
+        {
+            let newPhone = $("#phone").val().slice(0,-1);
+            $("#phone").val(newPhone);
+        }
     })
 
 });
