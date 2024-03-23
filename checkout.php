@@ -1,4 +1,8 @@
-<?php require './config/constant.php' ?>
+<?php 
+    require './config/constant.php' ;
+    require('auth.php');
+    require_login();
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 

@@ -21,8 +21,6 @@
 </head>
 <body class="bg-transparent">
     <?php
-        
-
         function is_post_request():bool
         {
             return strtoupper($_SERVER['REQUEST_METHOD']) === 'POST'; 
@@ -31,13 +29,13 @@
         if(is_post_request()){
 
             //check if the email has registered/username is duplicate
-            $email = stripslashes($_REQUEST['email']);
+            $email = stripslashes($_POST['email']);
             $email = mysqli_real_escape_string($conn, $email);
             $username = stripslashes($_POST['username']);
             $username = mysqli_real_escape_string($conn,$username);
-            $phone = stripslashes($_REQUEST['phone']);
+            $phone = stripslashes($_POST['phone']);
             $phone = mysqli_real_escape_string($conn, $phone);
-            $address = stripslashes($_REQUEST['address']);
+            $address = stripslashes($_POST['address']);
             $address = mysqli_real_escape_string($conn, $address);
 
             //check email

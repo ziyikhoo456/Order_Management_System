@@ -1,6 +1,7 @@
 <?php 
     require('config/constant.php');
-    session_start();
+    require('auth.php');
+    require_login();
 ?>
 
 
@@ -116,7 +117,7 @@
                                 </ul>
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="login.php"><i class="fa fa-user"></i> Login</a>
+                                <a href="login.php?fn=logout"><i class="fa fa-user"></i> Logout</a>
                             </div>
                         </div>
                     </div>

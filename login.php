@@ -1,3 +1,8 @@
+<?php 
+    require('config/constant.php');
+    include('auth.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +21,61 @@
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
 </head>
 <body class="bg-transparent">
+    <?php
+        //check if the user selected logout
+        if(isset($_GET['fn'])){
+            if($_GET['fn'] == "logout"){
+                logout();
+            }
+        }
+
+        function is_post_request():bool
+        {
+            return strtoupper($_SERVER['REQUEST_METHOD']) === 'POST'; 
+        }
+
+        if(is_post_request()){
+            
+            $username = stripslashes($_POST['username']);
+            $username = mysqli_real_escape_string($conn,$username);
+            $password = stripslashes($_POST['password']);
+            $password = mysqli_real_escape_string($conn, $password);
+
+            $sql = 
+            "SELECT custName
+            FROM customer
+            WHERE custName=? AND password=?";
+
+            $result=$conn->execute_query($sql,[$username,md5($password)]);
+            $count=mysqli_num_rows($result);
+
+            if($count < 1)
+            {
+                //login fail
+                echo"<div  class='alert alert-danger' role='alert'>Invalid email or password</div>";
+            }
+            else{
+                $_SESSION['username'] = $username;
+
+                //prevent session fixation attack
+                session_regenerate_id();
+
+                if(isset($_POST['remember_me'])){
+                    $cookie_name = "user";
+                    $cookie_value = $username;
+                    $expiration_time = time() + 60*60*24*30;
+                    setcookie($cookie_name,$cookie_value,$expiration_time,"/");
+                }
+
+                //login success
+                header('Location: index.php');
+            }
+        }
+        else{
+            $username="";
+        }
+    ?>
+
     <div class="d-flex align-items-center min-vh-100">
         <div class="container">
             <h1 class="text-white text-center">Have an account?</h1>    
@@ -24,14 +84,14 @@
             </div>
             <div class="row justify-content-center">
                 <!-- Sign In / Sign Up -->
-                <form name="sign-in-sign-up" action="index.html" method="post">
+                <form name="sign-in" action="login.php" method="post">
                     <div class="my-3">
                         <div class="form-group">
-                            <input type="text" class="form-control opacityInput border-0 text-white" id="username" placeholder="Username" required>
+                            <input type="text" class="form-control opacityInput border-0 text-white" name="username" id="username" placeholder="Username" value="<?php echo $username?>" required>
                         </div>
                         <div class="form-group">
                             <p class="input-group">
-                                <input type="password" class="form-control opacityInput border-0 text-white" id="password" placeholder="Password" required>
+                                <input type="password" class="form-control opacityInput border-0 text-white" id="password" name="password" placeholder="Password" required>
                                 <span class="input-group-addon border-0 opacityInput" id="togglePassword">
                                     <i class="fa fa-eye text-white" style="cursor: pointer"></i>
                                 </span>
