@@ -18,10 +18,10 @@
 <body class="bg-transparent">
     <div class="d-flex align-items-center min-vh-100">
         <div class="container">
-            <h1 class="text-white text-center">Have an account?</h3>    
+            <h1 class="text-white text-center">Register</h3>
             <div class="text-white text-center" style="font-size:14px">
-                New user? <a href="registration.php"><span style="color:Aqua;">Register</span></a>
-            </div>
+                Have account? <a href="login.php"><span style="color:Aqua;">Sign in</span></a>
+            </div>    
             <div class="row justify-content-center">
                 <!-- Sign In / Sign Up -->
                 <form name="sign-in-sign-up" action="index.html" method="post">
@@ -29,6 +29,7 @@
                         <div class="form-group">
                             <input type="text" class="form-control opacityInput border-0 text-white" id="username" placeholder="Username" required>
                         </div>
+
                         <div class="form-group">
                             <p class="input-group">
                                 <input type="password" class="form-control opacityInput border-0 text-white" id="password" placeholder="Password" required>
@@ -37,14 +38,23 @@
                                 </span>
                             </p>
                         </div>
-                        <div>
-                            <button type="submit" id="signInBtn" class="btn btn-light  w-100">Sign In</button>
+
+                        <div class="form-group">
+                            <input type="email" class="form-control opacityInput border-0 text-white" id="email" placeholder="Email" required>
                         </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="rememberMeCheck">
-                        <label class="form-check-label text-white" for="rememberMeCheck">Remember Me</label>
+
+                        <div class="form-group">
+                            <input type="tel" class="form-control opacityInput border-0 text-white" pattern="^(\+60(\s+)1)[02-46-9]-*[0-9]{7}$|^(\+60(\s+)1)[1]-*[0-9]{8}$" id="phone" placeholder="+60 1_________" data-slots="_" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control opacityInput border-0 text-white" id="address" placeholder="Address" required>
+                        </div>
+
+                        <div>
+                            <button type="submit" id="registerBtn" class="btn btn-light  w-100">Register</button>
+                        </div>
                     </div>
-                    
                 </form>
             </div>
         </div>
