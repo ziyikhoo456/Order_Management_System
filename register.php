@@ -21,6 +21,8 @@
 </head>
 <body class="bg-transparent">
     <?php
+        
+
         function is_post_request():bool
         {
             return strtoupper($_SERVER['REQUEST_METHOD']) === 'POST'; 
@@ -28,46 +30,65 @@
 
         if(is_post_request()){
 
-            //check if the user has registered
+            //check if the email has registered/username is duplicate
             $email = stripslashes($_REQUEST['email']);
             $email = mysqli_real_escape_string($conn, $email);
+            $username = stripslashes($_POST['username']);
+            $username = mysqli_real_escape_string($conn,$username);
+            $phone = stripslashes($_REQUEST['phone']);
+            $phone = mysqli_real_escape_string($conn, $phone);
+            $address = stripslashes($_REQUEST['address']);
+            $address = mysqli_real_escape_string($conn, $address);
 
+            //check email
             $sql =
             "SELECT custID 
             FROM customer
-            WHERE email='admin@admin.com'";
+            WHERE email=?";
 
-            $result = $conn->execute_query($sql);
-            // $result = $conn->execute_query($sql,[$email]);
-            if($result){
-                echo "
-                <script>
-                    alert('The email has already registered.');
-                </script>";
-            }
-            else
+            $result = $conn->execute_query($sql,[$email]);
+            $count = mysqli_num_rows($result);
+            
+            if($count > 0)
             {
-                $username = stripslashes($_POST['username']);
-                $username = mysqli_real_escape_string($conn,$username);
-                $password = stripslashes($_REQUEST['password']);
-                $password = mysqli_real_escape_string($conn, $password);
-                $phone = stripslashes($_REQUEST['phone']);
-                $phone = mysqli_real_escape_string($conn, $phone);
-                $address = stripslashes($_REQUEST['address']);
-                $address = mysqli_real_escape_string($conn, $address);
-    
-                $sql = 
-                "INSERT INTO customer(custName, password, email, contactNum, address)
-                VALUES(?,?,?,?,?)";
-                // VALUES('$username','$password','$email','$phone','$address')";
-    
-                $result = $conn->execute_query($sql,[$username,md5($password),$email,$phone,$address]);
-    
-                if($result){
-                    header('Location: login.php');
-                    exit();
+                echo"<div  class='alert alert-info' role='alert'>The email has already registered.</div>";
+            }
+            //check username
+            else{
+                $sql =
+                "SELECT custID 
+                FROM customer
+                WHERE custName=?";
+
+                $result = $conn->execute_query($sql,[$username]);
+                $count = mysqli_num_rows($result);
+
+                if($count > 0){
+                    echo"<div  class='alert alert-info' role='alert'>The username has already exists.</div>";
+                }
+                else
+                {
+                    $password = stripslashes($_REQUEST['password']);
+                    $password = mysqli_real_escape_string($conn, $password);
+        
+                    $sql = 
+                    "INSERT INTO customer(custName, password, email, contactNum, address)
+                    VALUES(?,?,?,?,?)";
+                    // VALUES('$username','$password','$email','$phone','$address')";
+        
+                    $result = $conn->execute_query($sql,[$username,md5($password),$email,$phone,$address]);
+        
+                    if($result){
+                        header('Location: login.php');
+                        exit();
+                    }
                 }
             }
+        }else{
+            $username="";
+            $email="";
+            $phone="+60 1_________";
+            $address="";
         }
     ?>
 
@@ -83,7 +104,7 @@
                 <form name="register" action="register.php" method="post">
                     <div class="my-3">
                         <div class="form-group">
-                            <input type="text" class="form-control opacityInput border-0 text-white" name="username" id="username" placeholder="Username" required>
+                            <input type="text" class="form-control opacityInput border-0 text-white" name="username" id="username" placeholder="Username" value="<?php echo $username;?>" required>
                         </div>
 
                         <div class="form-group">
@@ -96,15 +117,15 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="email" class="form-control opacityInput border-0 text-white" name="email" id="email" placeholder="Email" required>
+                            <input type="email" class="form-control opacityInput border-0 text-white" name="email" id="email" placeholder="Email" value="<?php echo $email;?>" required>
                         </div>
 
                         <div class="form-group">
-                            <input type="tel" class="form-control opacityInput border-0 text-white" name="phone" pattern="^(\+60(\s+)1)[02-46-9]-*[0-9]{7}$|^(\+60(\s+)1)[1]-*[0-9]{8}$" id="phone" placeholder="+60 1_________" data-slots="_" required>
+                            <input type="tel" class="form-control opacityInput border-0 text-white" name="phone" pattern="^(\+60(\s+)1)[02-46-9]-*[0-9]{7}$|^(\+60(\s+)1)[1]-*[0-9]{8}$" id="phone" placeholder="+60 1_________" data-slots="_" value="<?php echo $phone;?>" required>
                         </div>
 
                         <div class="form-group">
-                            <input type="text" class="form-control opacityInput border-0 text-white" name="address" id="address" placeholder="Address" required>
+                            <input type="text" class="form-control opacityInput border-0 text-white" name="address" id="address" placeholder="Address" value="<?php echo $address;?>" required>
                         </div>
 
                         <div>
