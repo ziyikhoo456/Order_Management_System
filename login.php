@@ -18,9 +18,9 @@
 <body class="bg-transparent">
     <div class="d-flex align-items-center min-vh-100">
         <div class="container">
-            <h1 class="text-white text-center">Have an account?</h3>    
+            <h1 class="text-white text-center">Have an account?</h1>    
             <div class="text-white text-center" style="font-size:14px">
-                New user? <a href="registration.php"><span style="color:Aqua;">Register</span></a>
+                New user? <a href="register.php"><span style="color:Aqua;">Register</span></a>
             </div>
             <div class="row justify-content-center">
                 <!-- Sign In / Sign Up -->
