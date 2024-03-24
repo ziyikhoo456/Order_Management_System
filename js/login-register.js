@@ -12,6 +12,7 @@ $(document).ready(function() {
         }
     });
 
+    //remove last character which is '_' for value of phone input if the phone digit is 7 digits long
     $("#registerBtn").on('click',function(event){
         if(($("#phone").val().slice(-1) == '_'))
         {
@@ -22,7 +23,7 @@ $(document).ready(function() {
 
 });
 
-//mask phone
+//mask phone input for register
 document.addEventListener('DOMContentLoaded', () => {
     for (const el of document.querySelectorAll("[placeholder][data-slots]")) {
         const pattern = el.getAttribute("placeholder"),

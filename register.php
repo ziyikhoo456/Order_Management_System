@@ -26,73 +26,73 @@
             return strtoupper($_SERVER['REQUEST_METHOD']) === 'POST'; 
         }
 
-        if(is_post_request()){
-
-            //check if the email has registered/username is duplicate
-            $email = stripslashes($_POST['email']);
-            $email = mysqli_real_escape_string($conn, $email);
-            $username = stripslashes($_POST['username']);
-            $username = mysqli_real_escape_string($conn,$username);
-            $phone = stripslashes($_POST['phone']);
-            $phone = mysqli_real_escape_string($conn, $phone);
-            $address = stripslashes($_POST['address']);
-            $address = mysqli_real_escape_string($conn, $address);
-
-            //check email
-            $sql =
-            "SELECT custID 
-            FROM customer
-            WHERE email=?";
-
-            $result = $conn->execute_query($sql,[$email]);
-            $count = mysqli_num_rows($result);
-            
-            if($count > 0)
-            {
-                echo"<div  class='alert alert-info' role='alert'>The email has already registered.</div>";
-            }
-            //check username
-            else{
-                $sql =
-                "SELECT custID 
-                FROM customer
-                WHERE custName=?";
-
-                $result = $conn->execute_query($sql,[$username]);
-                $count = mysqli_num_rows($result);
-
-                if($count > 0){
-                    echo"<div  class='alert alert-info' role='alert'>The username has already exists.</div>";
-                }
-                else
-                {
-                    $password = stripslashes($_REQUEST['password']);
-                    $password = mysqli_real_escape_string($conn, $password);
-        
-                    $sql = 
-                    "INSERT INTO customer(custName, password, email, contactNum, address)
-                    VALUES(?,?,?,?,?)";
-                    // VALUES('$username','$password','$email','$phone','$address')";
-        
-                    $result = $conn->execute_query($sql,[$username,md5($password),$email,$phone,$address]);
-        
-                    if($result){
-                        header('Location: login.php');
-                        exit();
-                    }
-                }
-            }
-        }else{
-            $username="";
-            $email="";
-            $phone="+60 1_________";
-            $address="";
-        }
     ?>
-
-
     <div class="d-flex align-items-center min-vh-100">
         <div class="container">
+            <?php
+                if(is_post_request()){
+
+                    //check if the email has registered/username is duplicate
+                    $email = stripslashes($_POST['email']);
+                    $email = mysqli_real_escape_string($conn, $email);
+                    $username = stripslashes($_POST['username']);
+                    $username = mysqli_real_escape_string($conn,$username);
+                    $phone = stripslashes($_POST['phone']);
+                    $phone = mysqli_real_escape_string($conn, $phone);
+                    $address = stripslashes($_POST['address']);
+                    $address = mysqli_real_escape_string($conn, $address);
+
+                    //check email
+                    $sql =
+                    "SELECT custID 
+                    FROM customer
+                    WHERE email=?";
+
+                    $result = $conn->execute_query($sql,[$email]);
+                    $count = mysqli_num_rows($result);
+                    
+                    if($count > 0)
+                    {
+                        echo"<div  class='alert alert-info' role='alert'>The email has already registered.</div>";
+                    }
+                    //check username
+                    else{
+                        $sql =
+                        "SELECT custID 
+                        FROM customer
+                        WHERE custName=?";
+
+                        $result = $conn->execute_query($sql,[$username]);
+                        $count = mysqli_num_rows($result);
+
+                        if($count > 0){
+                            echo"<div  class='alert alert-info' role='alert'>The username has already exists.</div>";
+                        }
+                        else
+                        {
+                            $password = stripslashes($_REQUEST['password']);
+                            $password = mysqli_real_escape_string($conn, $password);
+
+                            $sql = 
+                            "INSERT INTO customer(custName, password, email, contactNum, address)
+                            VALUES(?,?,?,?,?)";
+                            // VALUES('$username','$password','$email','$phone','$address')";
+
+                            $result = $conn->execute_query($sql,[$username,md5($password),$email,$phone,$address]);
+
+                            if($result){
+                                echo"<script>alert('Register successful!');
+                                window.location.href = 'login.php'</script>";
+                            }
+                        }
+                    }
+                }else{
+                    $username="";
+                    $email="";
+                    $phone="+60 1_________";
+                    $address="";
+                }
+            ?>
             <h1 class="text-white text-center">Register</h1>
             <div class="text-white text-center" style="font-size:14px">
                 Have account? <a href="login.php"><span style="color:Aqua;">Sign in</span></a>

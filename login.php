@@ -33,51 +33,52 @@
         {
             return strtoupper($_SERVER['REQUEST_METHOD']) === 'POST'; 
         }
-
-        if(is_post_request()){
-            
-            $username = stripslashes($_POST['username']);
-            $username = mysqli_real_escape_string($conn,$username);
-            $password = stripslashes($_POST['password']);
-            $password = mysqli_real_escape_string($conn, $password);
-
-            $sql = 
-            "SELECT custName
-            FROM customer
-            WHERE custName=? AND password=?";
-
-            $result=$conn->execute_query($sql,[$username,md5($password)]);
-            $count=mysqli_num_rows($result);
-
-            if($count < 1)
-            {
-                //login fail
-                echo"<div  class='alert alert-danger' role='alert'>Invalid email or password</div>";
-            }
-            else{
-                $_SESSION['username'] = $username;
-
-                //prevent session fixation attack
-                session_regenerate_id();
-
-                if(isset($_POST['remember_me'])){
-                    $cookie_name = "user";
-                    $cookie_value = $username;
-                    $expiration_time = time() + 60*60*24*30;
-                    setcookie($cookie_name,$cookie_value,$expiration_time,"/");
-                }
-
-                //login success
-                header('Location: index.php');
-            }
-        }
-        else{
-            $username="";
-        }
     ?>
 
     <div class="d-flex align-items-center min-vh-100">
         <div class="container">
+            <?php
+                if(is_post_request()){
+                            
+                    $username = stripslashes($_POST['username']);
+                    $username = mysqli_real_escape_string($conn,$username);
+                    $password = stripslashes($_POST['password']);
+                    $password = mysqli_real_escape_string($conn, $password);
+
+                    $sql = 
+                    "SELECT custName
+                    FROM customer
+                    WHERE custName=? AND password=?";
+
+                    $result=$conn->execute_query($sql,[$username,md5($password)]);
+                    $count=mysqli_num_rows($result);
+
+                    if($count < 1)
+                    {
+                        //login fail
+                        echo"<div  class='alert alert-danger' role='alert'>Invalid email or password</div>";
+                    }
+                    else{
+                        $_SESSION['username'] = $username;
+
+                        //prevent session fixation attack
+                        session_regenerate_id();
+
+                        if(isset($_POST['rememberMeCheck'])){
+                            $cookie_name = "user";
+                            $cookie_value = $username;
+                            $expiration_time = time() + 60*60*24*30;
+                            setcookie($cookie_name,$cookie_value,$expiration_time,"/");
+                        }
+
+                        //login success
+                        header('Location: index.php');
+                    }
+                }
+                else{
+                    $username="";
+                }
+            ?>
             <h1 class="text-white text-center">Have an account?</h1>    
             <div class="text-white text-center" style="font-size:14px">
                 New user? <a href="register.php"><span style="color:Aqua;">Register</span></a>
@@ -101,7 +102,7 @@
                             <button type="submit" id="signInBtn" class="btn btn-light  w-100">Sign In</button>
                         </div>
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="rememberMeCheck">
+                        <input type="checkbox" class="form-check-input" name="rememberMeCheck" id="rememberMeCheck">
                         <label class="form-check-label text-white" for="rememberMeCheck">Remember Me</label>
                     </div>
                     
