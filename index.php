@@ -2,18 +2,10 @@
 
     include('auth.php');
     require('config/constant.php');
-<<<<<<< HEAD
-
-    if (!isset($_SESSION['custName']) || !isset($_SESSION['custID'])){
-        header("Location: index.php");
-    }
 
     $name = $_SESSION['custName'];
     $custID = $_SESSION['custID'];
-=======
-    require('auth.php');
-    require_login();
->>>>>>> b73693ce0c000470bbaf89532cad02143f7c8cbd
+
 ?>
 
 
@@ -129,11 +121,7 @@
                                 </ul>
                             </div>
                             <div class="header__top__right__auth">
-<<<<<<< HEAD
                                 <a href="login.php"><i class="fa fa-user"></i> <?php echo $name ?></a>
-=======
-                                <a href="login.php?fn=logout"><i class="fa fa-user"></i> Logout</a>
->>>>>>> b73693ce0c000470bbaf89532cad02143f7c8cbd
                             </div>
                         </div>
                     </div>
