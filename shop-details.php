@@ -56,7 +56,12 @@
 
             $update="UPDATE cart set prodQuantity='$quantity' 
             WHERE custID='$custID' AND prodID ='$prodID';";
-            mysqli_query($conn, $update) or die(mysqli_error($conn));
+            $result = mysqli_query($conn, $update) or die(mysqli_error($conn));
+
+            if($result){
+                echo "<script>alert('The item have been added to cart successfully!');
+                    window.location.href = 'shoping-cart.php';</script>";
+            }
 
         }else{
 
