@@ -1,4 +1,32 @@
-<?php include('./header.php') ?>
+<?php   
+    include('./header.php');
+
+    $currencySymbol = "RM";
+    $total = 0;
+    
+
+    $sel_query="SELECT * FROM cart WHERE custID='$custID';";
+    $result = mysqli_query($conn,$sel_query);
+    $count = mysqli_num_rows($result);
+
+    while($row = mysqli_fetch_assoc($result)) {
+        $sqlcartprod = mysqli_query($conn,"SELECT * FROM product WHERE prodID='".$row["prodID"]."' ");
+        $rowcartprod = mysqli_fetch_array($sqlcartprod);
+        if($rowcartprod['prodStock']==0){
+            $update="UPDATE cart set prodQuantity='".$rowcartprod['prodStock']."' WHERE custID='$custID' AND prodID ='".$row['prodID']."' ;";
+            mysqli_query($conn, $update) or die(mysqli_error($conn));
+            $row['prodQuantity']=$rowcartprod['prodStock'];
+        }
+        else if($rowcartprod['prodStock']<$row['prodQuantity']){
+            $update="UPDATE cart set prodQuantity='".$rowcartprod['prodStock']."' WHERE custID='$custID' AND prodID ='".$row['prodID']."' ;";
+            mysqli_query($conn, $update) or die(mysqli_error($conn));
+            $row['prodQuantity']=$rowcartprod['prodStock'];
+        }
+        $total += $rowcartprod['prodPrice']*$row['prodQuantity'];
+    }
+
+?>
+
 
     <!-- Hero Section Begin -->
     <section class="hero">
@@ -124,7 +152,7 @@
                     WHERE Product.categoryID = Category.categoryID
                     ORDER BY prodID asc;";
                     $result = mysqli_query($conn, $sel_query);
-                    $currencySymbol = "RM";
+                    
 
                     while($row = mysqli_fetch_assoc($result)) {
 
