@@ -3,10 +3,6 @@
     include('auth.php');
     require('config/constant.php');
 
-    if (!isset($_SESSION['custName']) || !isset($_SESSION['custID'])){
-        header("Location: index.php");
-    }
-
     $name = $_SESSION['custName'];
     $custID = $_SESSION['custID'];
     $prodID = $_GET['prodID'];
@@ -50,15 +46,31 @@
             window.location.href = 'shop-details.php?prodID=$prodID';</script>";
         }
 
-        $quantity = $_POST['quantity'];
+        $sel_query = "SELECT * from `cart` WHERE prodID='$prodID' AND custID='$custID'";
+        $result = mysqli_query($conn, $sel_query);
+        $row = mysqli_fetch_assoc($result);
 
-        $query = "INSERT into `cart2` (custID, prodID, quantity)
-                VALUES ('$custID', '$prodID', '$quantity')"; 
-                $result = mysqli_query($conn,$query);
+        if($row > 0){
+            $oriQty = $row["prodQuantity"];
+            $quantity = $_POST['quantity'] + $oriQty;
 
-        if($result){
-            echo "<script>alert('The item have been added to cart successfully!');
-                window.location.href = 'shoping-cart.html';</script>";
+            $update="UPDATE cart set prodQuantity='$quantity' 
+            WHERE custID='$custID' AND prodID ='$prodID';";
+            mysqli_query($conn, $update) or die(mysqli_error($conn));
+
+        }else{
+
+            $quantity = $_POST['quantity'];
+
+            $query = "INSERT into `cart` (custID, prodID, prodQuantity)
+                    VALUES ('$custID', '$prodID', '$quantity')"; 
+                    $result = mysqli_query($conn,$query);
+
+            if($result){
+                echo "<script>alert('The item have been added to cart successfully!');
+                    window.location.href = 'shoping-cart.php';</script>";
+            }
+
         }
     }
 

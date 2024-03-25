@@ -1,5 +1,13 @@
 <!DOCTYPE html>
-<?php require './config/constant.php' ?>
+
+<?php 
+    include "auth.php";
+    require './config/constant.php';
+
+    $name = $_SESSION['custName'];
+    $custID = $_SESSION['custID'];
+
+?>
 
 <html lang="zxx">
 
@@ -28,7 +36,7 @@
 <body>
     <?php 
     $_SESSION['discount']=0;
-    $_SESSION['ID']='1';
+   
     $total = 0;
     $realtotal = 0?>
     <!-- Page Preloder -->
@@ -65,7 +73,7 @@
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="./index.html">Home</a></li>
+                <li class="active"><a href="./index.php">Home</a></li>
                 <li><a href="./shop-grid.html">Shop</a></li>
                 <li><a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
@@ -143,7 +151,7 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li><a href="./index.html">Home</a></li>
+                            <li><a href="./index.php">Home</a></li>
                             <li class="active"><a href="./shop-grid.html">Shop</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
@@ -236,7 +244,7 @@
                     <div class="breadcrumb__text">
                         <h2>Shopping Cart</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
+                            <a href="./index.php">Home</a>
                             <span>Order</span>
                         </div>
                     </div>
@@ -264,29 +272,29 @@
                             </thead>
                             <tbody>
                                 <?php 
-                                $sel_query="SELECT * FROM cart WHERE custID='".$_SESSION['ID']."';";
+                                $sel_query="SELECT * FROM cart WHERE custID='$custID';";
                                 $result = mysqli_query($conn,$sel_query);
                                 while($row = mysqli_fetch_assoc($result)) {
                                 $warning='';
                                 $sqlcartprod = mysqli_query($conn,"SELECT * FROM product WHERE prodID='".$row["prodID"]."' ");
                                 $rowcartprod = mysqli_fetch_array($sqlcartprod);
                                 if($rowcartprod['prodStock']==0){
-                                    $update="UPDATE cart set grandTotal='".$rowcartprod['prodStock']."' WHERE custID='".$_SESSION['ID']."' AND prodID ='".$row['prodID']."' ;";
+                                    $update="UPDATE cart set prodQuantity='".$rowcartprod['prodStock']."' WHERE custID='$custID' AND prodID ='".$row['prodID']."' ;";
                                     mysqli_query($conn, $update) or die(mysqli_error($conn));
-                                    $row['grandTotal']=$rowcartprod['prodStock'];
+                                    $row['prodQuantity']=$rowcartprod['prodStock'];
                                     $warning='Current out of stock.';
                                 }
-                                else if($rowcartprod['prodStock']<$row['grandTotal']){
-                                    $update="UPDATE cart set grandTotal='".$rowcartprod['prodStock']."' WHERE custID='".$_SESSION['ID']."' AND prodID ='".$row['prodID']."' ;";
+                                else if($rowcartprod['prodStock']<$row['prodQuantity']){
+                                    $update="UPDATE cart set prodQuantity='".$rowcartprod['prodStock']."' WHERE custID='$custID' AND prodID ='".$row['prodID']."' ;";
                                     mysqli_query($conn, $update) or die(mysqli_error($conn));
-                                    $row['grandTotal']=$rowcartprod['prodStock'];
+                                    $row['prodQuantity']=$rowcartprod['prodStock'];
                                     $warning='Changed to current maximum stock availability.';
                                 }
-                                $total += $rowcartprod['prodPrice']*$row['grandTotal'];
+                                $total += $rowcartprod['prodPrice']*$row['prodQuantity'];
                                 echo '
                                 <tr>
                                     <td class="shoping__cart__item">
-                                        <img src="'.$rowcartprod['imageName'].'" width="101" alt="">
+                                        <img src="img/featured/'.$rowcartprod['imageName'].'" width="101" alt="">
                                         <h5>'.
                                             $rowcartprod['prodName'].'
                                         </h5>
@@ -299,13 +307,13 @@
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
                                             <div class="pro-qty">
-                                                <input type="text" id="'.$row['prodID'].'" name="'.$row['prodID'].'"style="cursor: default" readonly value="'.intval($row['grandTotal']).'">
+                                                <input type="text" id="'.$row['prodID'].'" name="'.$row['prodID'].'"style="cursor: default" readonly value="'.intval($row['prodQuantity']).'">
                                             </div>
                                         </div>
-                                        '.$warning.'
+                                        <span class="text-danger">'.$warning.'</span>
                                     </td>
                                     <td class="shoping__cart__total" id="'.$row['prodID'].'price">
-                                        '.$rowcartprod['prodPrice']*$row['grandTotal'].'
+                                        '.$rowcartprod['prodPrice']*$row['prodQuantity'].'
                                     </td>
                                     <td>
                                     <button class="delete-ajax" data-id="'.$row['prodID'].'" onclick="confirmDelete(this);"><span class="icon_close"></span></button>
@@ -337,7 +345,7 @@
                                 <button type="submit" class="site-btn">APPLY COUPON</button>
                             </form>
                         </div>
-                        <span id="invalid_code"></span>
+                        <span class="text-danger" id="invalid_code"></span>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -481,7 +489,7 @@
             $('#updatecart').click(function() {
                 // Retrieve values from elements
                 <?php 
-                    $sel_query="SELECT * FROM cart WHERE custID='".$_SESSION['ID']."';";
+                    $sel_query="SELECT * FROM cart WHERE custID='$custID';";
                     $result = mysqli_query($conn,$sel_query);
                     while($row = mysqli_fetch_assoc($result)) {
                     echo "var name".$row['prodID']." = $('#".$row['prodID']."').val();";

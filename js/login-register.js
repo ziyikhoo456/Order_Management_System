@@ -1,14 +1,27 @@
 $(document).ready(function() {
-    $("#togglePassword").on('click', function(event) {
+    $("#loginIconPassword").on('click', function(event) {
         event.preventDefault();
-        if($('#password').attr("type") == "text"){
-            $('#password').attr('type', 'password');
-            $('#togglePassword i').addClass( "fa-eye" );
-            $('#togglePassword i').removeClass( "fa-eye-slash" );
-        }else if($('#password').attr("type") == "password"){
-            $('#password').attr('type', 'text');
-            $('#togglePassword i').removeClass( "fa-eye" );
-            $('#togglePassword i').addClass( "fa-eye-slash" );
+        if($('#loginPassword').attr("type") == "text"){
+            $('#loginPassword').attr('type', 'password');
+            $('#loginIconPassword i').addClass( "fa-eye" );
+            $('#loginIconPassword i').removeClass( "fa-eye-slash" );
+        }else if($('#loginPassword').attr("type") == "password"){
+            $('#loginPassword').attr('type', 'text');
+            $('#loginIconPassword i').removeClass( "fa-eye" );
+            $('#loginIconPassword i').addClass( "fa-eye-slash" );
+        }
+    });
+
+    $("#registerIconPassword").on('click', function(event) {
+        event.preventDefault();
+        if($('#registerPassword').attr("type") == "text"){
+            $('#registerPassword').attr('type', 'password');
+            $('#registerIconPassword i').addClass( "fa-eye" );
+            $('#registerIconPassword i').removeClass( "fa-eye-slash" );
+        }else if($('#registerPassword').attr("type") == "password"){
+            $('#registerPassword').attr('type', 'text');
+            $('#registerIconPassword i').removeClass( "fa-eye" );
+            $('#registerIconPassword i').addClass( "fa-eye-slash" );
         }
     });
 
