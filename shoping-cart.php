@@ -267,14 +267,26 @@
                                 $sel_query="SELECT * FROM cart WHERE custID='".$_SESSION['ID']."';";
                                 $result = mysqli_query($conn,$sel_query);
                                 while($row = mysqli_fetch_assoc($result)) {
-                                $sqlcartprod = mysqli_query($conn,"SELECT * FROM product WHERE
-                                prodID='".$row["prodID"]."' ");
+                                $warning='';
+                                $sqlcartprod = mysqli_query($conn,"SELECT * FROM product WHERE prodID='".$row["prodID"]."' ");
                                 $rowcartprod = mysqli_fetch_array($sqlcartprod);
+                                if($rowcartprod['prodStock']==0){
+                                    $update="UPDATE cart set grandTotal='".$rowcartprod['prodStock']."' WHERE custID='".$_SESSION['ID']."' AND prodID ='".$row['prodID']."' ;";
+                                    mysqli_query($conn, $update) or die(mysqli_error($conn));
+                                    $row['grandTotal']=$rowcartprod['prodStock'];
+                                    $warning='Current out of stock.';
+                                }
+                                else if($rowcartprod['prodStock']<$row['grandTotal']){
+                                    $update="UPDATE cart set grandTotal='".$rowcartprod['prodStock']."' WHERE custID='".$_SESSION['ID']."' AND prodID ='".$row['prodID']."' ;";
+                                    mysqli_query($conn, $update) or die(mysqli_error($conn));
+                                    $row['grandTotal']=$rowcartprod['prodStock'];
+                                    $warning='Changed to current maximum stock availability.';
+                                }
                                 $total += $rowcartprod['prodPrice']*$row['grandTotal'];
                                 echo '
                                 <tr>
                                     <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-1.jpg" width="101" alt="">
+                                        <img src="'.$rowcartprod['imageName'].'" width="101" alt="">
                                         <h5>'.
                                             $rowcartprod['prodName'].'
                                         </h5>
@@ -290,9 +302,13 @@
                                                 <input type="text" id="'.$row['prodID'].'" name="'.$row['prodID'].'"style="cursor: default" readonly value="'.intval($row['grandTotal']).'">
                                             </div>
                                         </div>
+                                        '.$warning.'
                                     </td>
                                     <td class="shoping__cart__total" id="'.$row['prodID'].'price">
                                         '.$rowcartprod['prodPrice']*$row['grandTotal'].'
+                                    </td>
+                                    <td>
+                                    <button class="delete-ajax" data-id="'.$row['prodID'].'" onclick="confirmDelete(this);"><span class="icon_close"></span></button>
                                     </td>
                                 </tr>';
                                 }
@@ -500,6 +516,30 @@
                 });
             });
         });
+    
+     function confirmDelete(button) {
+        if (confirm("Are you sure you want to delete this product record?")) {
+            // If the user confirms, trigger the AJAX request
+            deleteRecord(button);
+        }
+    }
+
+    function deleteRecord(button) {
+        var id = $(button).data('id'); // Get the ID associated with the button
+        $.ajax({
+            type: 'POST',
+            url: 'deletecart.php',
+            data: { id: id }, // Send the ID with the AJAX request
+            success: function(response) {
+                // Handle the response if needed
+                location.reload(); // Reload the page after successful deletion
+            },
+            error: function(xhr, status, error) {
+                // Handle errors if any
+                console.error(xhr.responseText);
+            }
+        });
+    }
     </script>
 </body>
 
