@@ -23,11 +23,11 @@
 <body class="bg-transparent">
     <?php
         //check if the user selected logout
-        if(isset($_GET['fn'])){
-            if($_GET['fn'] == "logout"){
-                logout();
-            }
-        }
+        // if(isset($_GET['fn'])){
+        //     if($_GET['fn'] == "logout"){
+        //         logout();
+        //     }
+        // }
 
         function is_post_request():bool
         {
