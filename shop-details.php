@@ -1,5 +1,6 @@
 <?php
 
+include('header.php');
 include('auth.php');
 require('config/constant.php');
 
@@ -76,7 +77,7 @@ if (isset($_POST['addToCart']) && $_POST['addToCart'] == 1) {
     }
 }
 
-include('header.php');
+
 
 ?>
 

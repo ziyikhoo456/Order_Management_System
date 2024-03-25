@@ -1,18 +1,20 @@
 <?php 
-    require 'config/constant.php' ;
-    require('auth.php');
 
-    $username = $_SESSION['username'];
+    include('./header.php');
+
+    // require 'config/constant.php' ;
+    // require('auth.php');
+
 
     $grandTotal = 0;
 
     $sql=
     "SELECT * 
     FROM customer
-    WHERE custName = ?";
+    WHERE custID = ?";
 
     //get customer info
-    $result=$conn->execute_query($sql,[$username]);
+    $result=$conn->execute_query($sql,[$custID]);
     $count=mysqli_num_rows($result);
     if($count>0){
         while($rows=mysqli_fetch_assoc($result)){
@@ -31,7 +33,7 @@
     $productsID=[];
     $productsQuantity=[];
 
-    include('./header.php');
+   
 ?>
 
     <!-- Hero Section Begin -->
@@ -121,7 +123,7 @@
                         <div class="col-lg-8 col-md-6">
                             <div class="checkout__input">
                                 <p>Name<span>*</span></p>
-                                <input type="text" value=<?php echo$username?> disabled >
+                                <input type="text" value=<?php echo $name?> disabled >
                             </div>
                             <div class="checkout__input">
                                 <p>Address<span>*</span></p>

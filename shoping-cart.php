@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 
 <?php 
-    include "auth.php";
-    require './config/constant.php';
 
-    $name = $_SESSION['custName'];
-    $custID = $_SESSION['custID'];
+    include "./header.php";
+    // include "auth.php";
+    // require './config/constant.php';
+
+    // $name = $_SESSION['custName'];
+    // $custID = $_SESSION['custID'];
 
     $_SESSION['discount']=0;
    
     $total = 0;
     $realtotal = 0;
 
-    include "./header.php";
+   
 
 ?>
     <!-- Hero Section Begin -->
