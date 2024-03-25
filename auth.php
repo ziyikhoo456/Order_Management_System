@@ -8,6 +8,7 @@
         session_destroy();
         header("Location: register.php?session_expired=1");
         exit();
+        
     } else {
         session_regenerate_id(true);
         $_SESSION['last_timestamp'] = time();
