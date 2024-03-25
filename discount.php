@@ -4,11 +4,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $discount = $_POST["discount"];
     $realtotal = $_POST["realtotal"];
         if ($discount == "elecpro40"){
-        echo "$".$realtotal*0.6;
+        echo $realtotal*0.4;
+        $_SESSION['discount'] = 0.4;
         }
         else{
-            echo "$".$realtotal;
-            echo "<br> Invalid Discount Code.";
+            echo "Invalid Discount Code.";
+            $_SESSION['discount'] = 0;
         }
 }
 ?>

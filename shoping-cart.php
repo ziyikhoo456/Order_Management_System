@@ -26,7 +26,9 @@
 </head>
 
 <body>
-    <?php $_SESSION['cart'] = array(array('product'=>'2','quantity'=>5),array('product'=>'2','quantity'=>3));
+    <?php 
+    $_SESSION['discount']=0;
+    $_SESSION['ID']='1';
     $total = 0;
     $realtotal = 0?>
     <!-- Page Preloder -->
@@ -253,7 +255,7 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="shoping__product">Products</th>
+                                    <th id="shoppingcart" class="shoping__product">Products</th>
                                     <th>Price</th>
                                     <th>Quantity</th>
                                     <th>Total</th>
@@ -262,12 +264,13 @@
                             </thead>
                             <tbody>
                                 <?php 
-                                $cart = $_SESSION['cart'];
-                                foreach($cart as $item):
+                                $sel_query="SELECT * FROM cart WHERE custID='".$_SESSION['ID']."';";
+                                $result = mysqli_query($conn,$sel_query);
+                                while($row = mysqli_fetch_assoc($result)) {
                                 $sqlcartprod = mysqli_query($conn,"SELECT * FROM product WHERE
-                                prodID='".$item['product']."' ");
+                                prodID='".$row["prodID"]."' ");
                                 $rowcartprod = mysqli_fetch_array($sqlcartprod);
-                                $total += $rowcartprod['prodPrice']*$item['quantity'];
+                                $total += $rowcartprod['prodPrice']*$row['grandTotal'];
                                 echo '
                                 <tr>
                                     <td class="shoping__cart__item">
@@ -284,16 +287,15 @@
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
                                             <div class="pro-qty">
-                                                <input type="text" style="cursor: default" readonly
-                                                    value="'.$item['quantity'].'">
+                                                <input type="text" id="'.$row['prodID'].'" name="'.$row['prodID'].'"style="cursor: default" readonly value="'.intval($row['grandTotal']).'">
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="shoping__cart__total" id="'.$item['product'].'price">
-                                        '.$rowcartprod['prodPrice']*$item['quantity'].'
+                                    <td class="shoping__cart__total" id="'.$row['prodID'].'price">
+                                        '.$rowcartprod['prodPrice']*$row['grandTotal'].'
                                     </td>
                                 </tr>';
-                                endforeach;
+                                }
                                 $realtotal = $total;
                                 ?>
                             </tbody>
@@ -305,8 +307,8 @@
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
                         <a href="#" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-                        <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                            Upadate Cart</a>
+                        <button id="updatecart" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
+                            Update Cart</button>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -314,11 +316,12 @@
                         <div class="shoping__discount">
                             <h5>Discount Codes</h5>
                             <form id="discount_code">
-                                <input type="text" name="discount" placeholder="Enter your coupon code">
+                                <input type="text" id="discount" name="discount" placeholder="Enter your coupon code">
                                 <input type="hidden" id="realtotal" name="realtotal" value="<?php echo $realtotal; ?>">
                                 <button type="submit" class="site-btn">APPLY COUPON</button>
                             </form>
                         </div>
+                        <span id="invalid_code"></span>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -326,6 +329,7 @@
                         <h5>Cart Total</h5>
                         <ul>
                             <li>Subtotal <span>$<?php echo $total;?></span></li>
+                            <span id=discountline type = "hidden"></span>
                             <li>Total <span id="result">$<?php echo $realtotal; ?></span></li>
                         </ul>
                         <a href="checkout.html" class="primary-btn">PROCEED TO CHECKOUT</a>
@@ -335,7 +339,7 @@
         </div>
     </section>
     <!-- Shoping Cart Section End -->
-
+    
     <!-- Footer Section Begin -->
     <footer class="footer spad">
         <div class="container">
@@ -428,14 +432,25 @@
 
             // Get form data
             var formData = $(this).serialize();
-
+            
             // Send AJAX request
             $.ajax({
                 type: 'POST',
                 url: 'discount.php', // PHP script to handle form submission
                 data: formData,
                 success: function(response) {
-                    $('#result').html(response); // Update result div with response from server
+                    var discount = $('#discount').val();
+                    var realtotal = $('#realtotal').val();
+                    if (discount == 'elecpro40'){
+                        $('#result').html('$'+(realtotal-response));
+                        $('#discountline').html("<li>Discount <span>$"+response+"</span></li>")
+                        $('#invalid_code').html(''); // Update result div with response from server
+                    }
+                    else{
+                        $('#invalid_code').html(response);
+                        $('#discountline').html('');
+                        $('#result').html('$'+realtotal);
+                    }
                 },
                 error: function(xhr, status, error) {
                     console.error(xhr.responseText); // Log error message if AJAX request fails
@@ -443,7 +458,49 @@
             });
         });
     });
-    </script>                            
+    </script>    
+    
+    <script>
+        $(document).ready(function() {
+            $('#updatecart').click(function() {
+                // Retrieve values from elements
+                <?php 
+                    $sel_query="SELECT * FROM cart WHERE custID='".$_SESSION['ID']."';";
+                    $result = mysqli_query($conn,$sel_query);
+                    while($row = mysqli_fetch_assoc($result)) {
+                    echo "var name".$row['prodID']." = $('#".$row['prodID']."').val();";
+                    }
+                ?>
+                // Send AJAX request
+                $.ajax({
+                    type: 'POST',
+                    url: 'updatecart.php',
+                    data: {
+                        <?php 
+                        $i = 0;
+                        $result = mysqli_query($conn,$sel_query);
+                        while($row = mysqli_fetch_assoc($result)) {
+                        if ($i == 0 ){
+                            $i=1;
+                        }
+                        else{
+                            echo ",";
+                        }
+                        echo $row['prodID'].": name".$row['prodID'];
+                        }
+                        ?>
+                    },
+                    success: function(response) {
+                        // Display response in output div
+                        location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
