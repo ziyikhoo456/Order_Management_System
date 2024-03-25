@@ -1,6 +1,14 @@
-<?php 
+<?php
+
+    include('auth.php');
     require('config/constant.php');
-    session_start();
+
+    if (!isset($_SESSION['custName']) || !isset($_SESSION['custID'])){
+        header("Location: index.php");
+    }
+
+    $name = $_SESSION['custName'];
+    $custID = $_SESSION['custID'];
 ?>
 
 
@@ -60,7 +68,7 @@
                 </ul>
             </div>
             <div class="header__top__right__auth">
-                <a href="login.php"><i class="fa fa-user"></i> Login</a>
+                <a href="login.php"><i class="fa fa-user"></i> <?php echo $name ?></a>
             </div>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
@@ -116,7 +124,7 @@
                                 </ul>
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="login.php"><i class="fa fa-user"></i> Login</a>
+                                <a href="login.php"><i class="fa fa-user"></i> <?php echo $name ?></a>
                             </div>
                         </div>
                     </div>
