@@ -2,10 +2,6 @@
 
     include('./header.php');
 
-    // require 'config/constant.php' ;
-    // require('auth.php');
-
-
     $grandTotal = 0;
 
     $sql=
@@ -299,6 +295,8 @@
             </div>
         </div>
     </section>
+
+    
     <!-- Checkout Section End -->
 
 <?php include('./footer.php');?>

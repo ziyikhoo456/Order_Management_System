@@ -7,7 +7,6 @@
 
     $currencySymbol = "RM";
     $total = 0;
-    
 
     $sel_query="SELECT * FROM cart WHERE custID='$custID';";
     $result = mysqli_query($conn,$sel_query);
