@@ -34,6 +34,7 @@ if (isset($_POST['update'])) {
     $categoryID = mysqli_real_escape_string($conn, $_POST['categoryID']);
     $imageName = ""; 
 
+
     if (isset($_FILES['newImageFile']) && $_FILES['newImageFile']['error'] == 0) {
         $allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
         $maxFileSize = 10 * 1024 * 1024;
@@ -41,6 +42,15 @@ if (isset($_POST['update'])) {
         $fileType = $_FILES['newImageFile']['type'];
         $fileSize = $_FILES['newImageFile']['size'];
         $newUploadedFileName = $_FILES['newImageFile']['name'];
+
+        //unlinking old image, when uploaded new image
+        $oldimageQuery = "SELECT imageName FROM product WHERE prodID = '$productID'";
+        $oldimageResult = mysqli_query($conn, $oldimageQuery);
+        $currentImageName = "";
+        if ($oldimageNameRow = mysqli_fetch_assoc($oldimageResult)) {
+            $currentImageName = $oldimageNameRow['imageName'];
+        }
+        $currentImagePath = $uploadPath . $currentImageName;
         
         if (in_array($fileType, $allowedTypes) && $fileSize <= $maxFileSize) {
             $checkQuery = "SELECT COUNT(*) as count FROM product WHERE imageName = '$newUploadedFileName'";
@@ -53,6 +63,11 @@ if (isset($_POST['update'])) {
             } else {
                 $targetFilePath = $uploadPath . $newUploadedFileName;
                 if (move_uploaded_file($_FILES['newImageFile']['tmp_name'], $targetFilePath)) {
+                    
+                    if ($currentImageName && $currentImageName != $newUploadedFileName && file_exists($currentImagePath)) {
+                        unlink($currentImagePath);
+                    } //unlink the old image if new image is uploaded
+
                     $imageName = $newUploadedFileName; //if file name different
                 } else {
                     $status = "File upload failed, please try again.";
