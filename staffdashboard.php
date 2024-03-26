@@ -50,7 +50,7 @@ $_SESSION['last_log_in'] = time();  //update last activity time after inactivity
         setTimeout(function()
         {
             alert('Due to inactivity, you have been logged out.');
-            window.location.href = "logout.php";
+            window.location.href = "staff-login.php";
         }, 300000); //milliseconds, 1seconds = 10000ms
     </script> 
 

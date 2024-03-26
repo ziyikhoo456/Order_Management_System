@@ -36,10 +36,3 @@
 </body>
 </html>
 
-<!-- 
-    Put into login page under Remember Me
-<div>
-    <p>Staff member? <a href="staff-login.php">Log in here</a>.</p>
-</div> 
-
--->
