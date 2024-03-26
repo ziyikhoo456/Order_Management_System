@@ -62,7 +62,7 @@ $_SESSION['last_log_in'] = time();  //update last activity time after inactivity
     <a href="update_product.php">Edit Product</a><br>
     <a href="view_product.php">View Product</a><br>
     <a href="delete_product.php">Delete Product</a><br>
-    <a href="stafflogout.php">Logout</a>
+    <a href="logout.php">Logout</a>
 
     <!-- Inactivity logout, no remember me & cookie set as for more secure log in of staff -->
     
