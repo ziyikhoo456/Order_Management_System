@@ -108,10 +108,12 @@
                                 <?php 
                                 $sel_query="SELECT * FROM cart WHERE custID='$custID';";
                                 $result = mysqli_query($conn,$sel_query);
+                                //Looping every item in the shopping cart
                                 while($row = mysqli_fetch_assoc($result)) {
                                 $warning='';
                                 $sqlcartprod = mysqli_query($conn,"SELECT * FROM product WHERE prodID='".$row["prodID"]."' ");
                                 $rowcartprod = mysqli_fetch_array($sqlcartprod);
+                                //Check if item still matches the stock in the system
                                 if($rowcartprod['prodStock']==0){
                                     $update="UPDATE cart set prodQuantity='".$rowcartprod['prodStock']."' WHERE custID='$custID' AND prodID ='".$row['prodID']."' ;";
                                     mysqli_query($conn, $update) or die(mysqli_error($conn));
@@ -125,6 +127,7 @@
                                     $warning='Changed to current maximum stock availability.';
                                 }
                                 $total += $rowcartprod['prodPrice']*$row['prodQuantity'];
+                                //Format for showing the items
                                 echo '
                                 <tr>
                                     <td class="shoping__cart__item">
@@ -267,7 +270,7 @@
                         ?>
                     },
                     success: function(response) {
-                        // Display response in output div
+                        // Display response by refreshing page
                         location.reload();
                     },
                     error: function(xhr, status, error) {
