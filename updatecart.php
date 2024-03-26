@@ -9,10 +9,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     while($row = mysqli_fetch_assoc($result)) {
         $newquantity = $_POST[$row['prodID']];
         if ($newquantity == 0){
+            //To remove item if quantity is changed to 0
             $delete = "DELETE FROM cart WHERE custID='".$_SESSION['custID']."' AND prodID ='".$row['prodID']."' ;";
             mysqli_query($conn, $delete) or die(mysqli_error($conn));
         }
         else{
+            //To update product quantity
         $update="UPDATE cart set prodQuantity='".$newquantity."' WHERE custID='".$_SESSION['custID']."' AND prodID ='".$row['prodID']."' ;";
         mysqli_query($conn, $update) or die(mysqli_error($conn));
         }
