@@ -60,6 +60,7 @@ $_SESSION['last_log_in'] = time();  //update last activity time after inactivity
     <h2>Welcome back <?php echo $_SESSION['staffName']; ?></h2>
     <a href="create_product.php">Create New Product</a><br>
     <a href="update_product.php">Edit Product</a><br>
+    <a href="view_product.php">View Product</a><br>
     <a href="delete_product.php">Delete Product</a><br>
     <a href="stafflogout.php">Logout</a>
 

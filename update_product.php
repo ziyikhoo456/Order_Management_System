@@ -136,7 +136,7 @@ if (isset($_SESSION['status'])) {
         </tr>
     </thead>
     <tbody>
-        <?php while($product = mysqli_fetch_assoc($products)): ?>
+        <?php while($product = mysqli_fetch_assoc($products)): ?> <!-- fetching product row from product table  -->
             <tr>
                 <form method="post" enctype="multipart/form-data">
                     <td><input type="text" name="prodName" value="<?php echo htmlspecialchars($product['prodName']); ?>"></td>
