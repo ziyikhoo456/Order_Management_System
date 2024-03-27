@@ -141,6 +141,7 @@
                         </div>
                         <div class="text sign-up-text">Don't have an account? <label for="flip">Sign up now</label></div>
                         </div>
+                        <div class="text sign-up-text">Already a staff? <label>Log in as staff here</label></div>
                     </form>
                 </div>
                     <div class="signup-form">
