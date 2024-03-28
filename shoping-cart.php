@@ -17,58 +17,6 @@
    
 
 ?>
-    <!-- Hero Section Begin -->
-    <section class="hero hero-normal">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="hero__categories">
-                        <div class="hero__categories__all">
-                            <i class="fa fa-bars"></i>
-                            <span>All departments</span>
-                        </div>
-                        <ul>
-                            <li><a href="#">Fresh Meat</a></li>
-                            <li><a href="#">Vegetables</a></li>
-                            <li><a href="#">Fruit & Nut Gifts</a></li>
-                            <li><a href="#">Fresh Berries</a></li>
-                            <li><a href="#">Ocean Foods</a></li>
-                            <li><a href="#">Butter & Eggs</a></li>
-                            <li><a href="#">Fastfood</a></li>
-                            <li><a href="#">Fresh Onion</a></li>
-                            <li><a href="#">Papayaya & Crisps</a></li>
-                            <li><a href="#">Oatmeal</a></li>
-                            <li><a href="#">Fresh Bananas</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <div class="hero__search">
-                        <div class="hero__search__form">
-                            <form action="#">
-                                <div class="hero__search__categories">
-                                    All Categories
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
-                                <input type="text" placeholder="What do yo u need?">
-                                <button type="submit" class="site-btn">SEARCH</button>
-                            </form>
-                        </div>
-                        <div class="hero__search__phone">
-                            <div class="hero__search__phone__icon">
-                                <i class="fa fa-phone"></i>
-                            </div>
-                            <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
-                                <span>support 24/7 time</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Hero Section End -->
 
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="img/phone-banner.jpg">
@@ -138,7 +86,7 @@
                                     </td>
                                     <td class="shoping__cart__price">
                                         <span id="price">'.
-                                             $rowcartprod['prodPrice'].'
+                                            $currencySymbol . $rowcartprod['prodPrice'].'
                                         </span>
                                     </td>
                                     <td class="shoping__cart__quantity">
@@ -150,7 +98,7 @@
                                         <span class="text-danger">'.$warning.'</span>
                                     </td>
                                     <td class="shoping__cart__total" id="'.$row['prodID'].'price">
-                                        '.$rowcartprod['prodPrice']*$row['prodQuantity'].'
+                                        '.$currencySymbol.''.$rowcartprod['prodPrice']*$row['prodQuantity'].'
                                     </td>
                                     <td>
                                     <button class="delete-ajax" data-id="'.$row['prodID'].'" onclick="confirmDelete(this);"><span class="icon_close"></span></button>
@@ -178,7 +126,7 @@
                             <h5>Discount Codes</h5>
                             <form id="discount_code">
                                 <input type="text" id="discount" name="discount" placeholder="Enter your coupon code">
-                                <input type="hidden" id="realtotal" name="realtotal" value="<?php echo $realtotal; ?>">
+                                <input type="hidden" id="realtotal" name="realtotal" value="<?php echo$realtotal; ?>">
                                 <button type="submit" class="site-btn">APPLY COUPON</button>
                             </form>
                         </div>
@@ -189,9 +137,9 @@
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Subtotal <span>$<?php echo $total;?></span></li>
+                            <li>Subtotal <span><?php echo $currencySymbol . $total;?></span></li>
                             <span id=discountline type = "hidden"></span>
-                            <li>Total <span id="result">$<?php echo $realtotal; ?></span></li>
+                            <li>Total <span id="result"><?php echo  $currencySymbol . $realtotal; ?></span></li>
                         </ul>
                         <a href="checkout.php" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
@@ -221,14 +169,14 @@
                     var discount = $('#discount').val();
                     var realtotal = $('#realtotal').val();
                     if (discount == 'elecpro40'){
-                        $('#result').html('$'+(realtotal-response));
-                        $('#discountline').html("<li>Discount <span>$"+response+"</span></li>")
+                        $('#result').html('RM'+(realtotal-response));
+                        $('#discountline').html("<li>Discount <span>RM"+response+"</span></li>")
                         $('#invalid_code').html(''); // Update result div with response from server
                     }
                     else{
                         $('#invalid_code').html(response);
                         $('#discountline').html('');
-                        $('#result').html('$'+realtotal);
+                        $('#result').html('RM'+realtotal);
                     }
                 },
                 error: function(xhr, status, error) {
