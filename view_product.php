@@ -16,36 +16,45 @@ $products = mysqli_query($conn, $query);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Product List</title>
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="css/view.css" type="text/css">
+    <title>Product List</title> 
+    <link rel="icon" href="img/logo2.png" type="image/png">
 </head>
 <body>
-    <h2>Product List</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Product Name</th>
-                <th>Product Stock</th>
-                <th>Product Price</th>
-                <th>Description</th>
-                <th>Image Name</th>
-                <th>Category</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php while ($product = mysqli_fetch_assoc($products)): ?>  
+    <div class="product-list-container">
+        <h2>Product List</h2>
+        <table>
+            <thead>
                 <tr>
-                    <td><?php echo htmlspecialchars($product['prodName']); ?></td>
-                    <td><?php echo htmlspecialchars($product['prodStock']); ?></td>
-                    <td><?php echo htmlspecialchars($product['prodPrice']); ?></td>
-                    <td><?php echo htmlspecialchars($product['description']); ?></td>
-                    <td><?php echo htmlspecialchars($product['imageName']); ?></td>
-                    <td><?php echo htmlspecialchars($product['catName']); ?></td>
+                    <th>Product Name</th>
+                    <th>Product Stock</th>
+                    <th>Product Price</th>
+                    <th>Description</th>
+                    <th>Image Name</th>
+                    <th>Category</th>
                 </tr>
-            <?php endwhile; ?> 
-        </tbody>
-    </table>
-    <a href="staffdashboard.php">Back to dashboard</a>
-    <a href="logout.php">Logout</a>
+            </thead>
+            <tbody>
+                <?php while ($product = mysqli_fetch_assoc($products)): ?>  
+                    <tr>
+                        <td><?php echo htmlspecialchars($product['prodName']); ?></td>
+                        <td><?php echo htmlspecialchars($product['prodStock']); ?></td>
+                        <td><?php echo htmlspecialchars($product['prodPrice']); ?></td>
+                        <td><?php echo htmlspecialchars($product['description']); ?></td>
+                        <td><?php echo htmlspecialchars($product['imageName']); ?></td>
+                        <td><?php echo htmlspecialchars($product['catName']); ?></td>
+                    </tr>
+                <?php endwhile; ?> 
+            </tbody>
+        </table>
+        <div class="btn-container">
+            <a href="staffdashboard.php" class="button">Back to dashboard</a>
+            <a href="logout.php" class="button">Logout</a>
+        </div>
+    </div>
 </body>
 </html>
