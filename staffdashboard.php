@@ -31,6 +31,7 @@ $_SESSION['last_log_in'] = time();  //update last activity time after inactivity
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <title>Staff Dashboard | ELECPRO</title>
+    <link rel="icon" href="img/logo2.png" type="image/png">
 
        <!-- for client-side check of inactivity (request once user(staff) did not make any movement(trigger the inactivity function))  -->
        <script>
