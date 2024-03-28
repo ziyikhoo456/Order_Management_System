@@ -88,7 +88,24 @@ if (isset($_POST['update'])) {
         }
     }
 
-    if (empty($status)) {
+    $currentProductQuery = "SELECT prodName, prodStock, prodPrice, description, imageName, categoryID FROM product WHERE prodID = '$productID'";
+    $currentProductResult = mysqli_query($conn, $currentProductQuery);
+
+    $changesMade = false;
+
+    if ($currentProductRow = mysqli_fetch_assoc($currentProductResult)) {
+    
+        if ($currentProductRow['prodName'] !== $prodName ||
+            $currentProductRow['prodStock'] !== $prodStock ||
+            $currentProductRow['prodPrice'] !== $prodPrice ||
+            $currentProductRow['description'] !== $description ||
+            $currentProductRow['imageName'] !== $imageName ||
+            $currentProductRow['categoryID'] !== $categoryID) {
+            $changesMade = true;
+        }
+    }
+
+    if (empty($status) && $changesMade) {
         // Update product in database
         $updateQuery = "UPDATE product 
                         SET prodName = '$prodName', prodStock = '$prodStock', prodPrice = '$prodPrice', description = '$description', imageName = '$imageName', categoryID = '$categoryID' 
@@ -100,6 +117,8 @@ if (isset($_POST['update'])) {
         } else {
             $status = "Error updating product: " . mysqli_error($conn);
         }
+    } else {
+        $status = "No changes are made";
     }
     $_SESSION['status'] = $status;
     header("Location: update_product.php");

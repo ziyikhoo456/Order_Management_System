@@ -129,3 +129,47 @@ input[type="file"] {
     color: red;
     margin: 10px 0;
 }
+
+/* make the table scrollable */
+@media (max-width: 768px) { 
+    .update-product-container {
+        width: 100%; 
+        overflow-x: auto; 
+        box-sizing: border-box; 
+        margin: 0; 
+        padding: 0; 
+    }
+
+    table {
+        table-layout: auto;
+        width: 100%; 
+        min-width: 600px; 
+        border-collapse: collapse; 
+        white-space: nowrap; 
+    }
+
+    th, td {
+        padding: 8px; 
+        font-size: 14px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+        width: 100%; 
+        max-width: none; 
+        box-sizing: border-box; 
+    }
+
+    input[type="file"] {
+        width: auto; 
+    }
+
+    .file-input-container label {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100px; 
+    }
+}
