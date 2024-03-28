@@ -68,8 +68,7 @@
             $result = mysqli_query($conn, $query);
 
             if ($result) {
-                echo "<script>alert('The item have been added to cart successfully!');
-                        window.location.href = 'shoping-cart.php';</script>";
+                echo "<script>window.location.href = 'shoping-cart.php';</script>";
             }
         }
     }

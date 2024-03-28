@@ -53,12 +53,7 @@
     <!-- Checkout Section Begin -->
     <section class="checkout spad">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h6><span class="icon_tag_alt"></span> Have a coupon? <a href="#">Click here</a> to enter your code
-                    </h6>
-                </div>
-            </div>
+           
             <div class="checkout__form">
                 <h4>Billing Details</h4>
                 <form name="checkout-form" action="checkout.php" method="post">
@@ -221,8 +216,7 @@
                                 </ul>
                                 <div class="checkout__order__subtotal">Subtotal <span><?php echo"RM $grandTotal";?></span></div>
                                 <div class="checkout__order__total">Total <span><?php echo"RM $grandTotal";?></span></div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
-                                    ut labore et dolore magna aliqua.</p>
+                               
                                 <div class="checkout__input__checkbox">
                                     <label for="payment">
                                         Pay by Cash
