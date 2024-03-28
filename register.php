@@ -1,12 +1,5 @@
 <?php 
     session_start();
-
-    if (isset($_SESSION['show_staff_login'])) {
-        $show_staff_login = $_SESSION['show_staff_login'];
-    } else {
-        $show_staff_login = false;
-    }
-    unset($_SESSION['show_staff_login']);
 ?>
 
 <!DOCTYPE html>
@@ -42,12 +35,6 @@
                 $_SESSION['custName'] = $userData['custName'];
                 $_SESSION['custID'] = $userData['custID'];
                 $_SESSION['last_timestamp'] = time();
-
-                // $name =  $_SESSION['custName'];
-                // $custID = $_SESSION['custID'];
-
-                // echo "<script>alert('$name, $custID');
-                // window.location.href = 'index.php';</script>";
                
                 header("Location: index.php");
                 exit(); 
@@ -69,7 +56,7 @@
             $address = stripslashes($_REQUEST['contactNum']); 
             $address = mysqli_real_escape_string($conn,$address);
 
-            //$reg_date = date("Y-m-d H:i:s");
+
             $query = "SELECT *  
             FROM `customer`
             WHERE email='$email'";
@@ -97,17 +84,8 @@
 
         }else{
 
-            // if (isset($_GET['session_expired']) && $_GET['session_expired'] == 1) {
-            //     echo "<script>alert('Your session has expired. Please log in again.');</script>";
-            //     session_destroy();
-            //     header("Location: register.php");
-            // }
-           
-
             ?>
             <div class="container">
-                <input type="radio" name="formSwitch" id="userLoginRadio" class="form-switcher" <?php echo !$show_staff_login ? 'checked' : '' ?> hidden>
-                <input type="radio" name="formSwitch" id="staffLoginRadio" class="form-switcher" <?php echo $show_staff_login ? 'checked' : '' ?> hidden>
                 <input type="checkbox" id="flip">
                 <div class="cover">
                 <div class="front">
@@ -149,33 +127,10 @@
                             <input type="submit" value="Submit">
                         </div>
                         <div class="text sign-up-text">Don't have an account? <label for="flip">Sign up now</label></div>
+                        <div class="text sign-up-text">Already a staff? <a href="staff_login.php">Log in as staff here</a></div>
                         </div>
-                        <div class="text sign-up-text">Already a staff? <label for="staffLoginRadio">Log in as staff here</label></div>
                     </form>
                 </div>
-
-                    <div class="staff-login-form">
-                    <div class="title">Staff Login</div>
-                    <form action="staff.php" method="post" name="staff_login">
-                        <input type="hidden" name="action" value="login">
-                        <div class="input-box">
-                            <i class="fas fa-user"></i>
-                            <input type="text" name="staffname" placeholder="Enter your staff name" required>
-                        </div>
-                        <div class="input-box">
-                            <i class="fas fa-lock"></i>
-                            <input type="password" name="password" placeholder="Enter your password" required>
-                        </div>
-                            <?php if (isset($_SESSION['error'])): ?>
-                                <p style="color: red;"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
-                            <?php endif; ?>
-                        <div class="button input-box">
-                            <input type="submit" value="Login">
-                        </div>
-                        <div class="text sign-up-text">Already a user? <label for="userLoginRadio">Log in as user here</label></div>
-                    </form>
-                    </div>
-
                     <div class="signup-form">
                     <div class="title">Signup</div>
                     <form action="#" method="post" name="register">
@@ -235,5 +190,3 @@
         <script src="js/login-register.js"></script>
 </body>
 </html>
-
-

@@ -14,7 +14,6 @@
     $total = 0;
     $realtotal = 0;
 
-   
 
 ?>
 
