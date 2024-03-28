@@ -108,19 +108,19 @@ if (isset($_SESSION['status'])) {
             <input type="hidden" name="action" value="create">
             <div class="form-group">
                 <label>Product Name:</label>
-                <input type="text" name="prodName" required placeholder="Enter product name">
+                <input type="text" name="prodName" required placeholder="Enter product name" oninput="clearStatusMessage()">
             </div>
             <div class="form-group">
                 <label>Product Stock:</label>
-                <input type="number" name="prodStock" required placeholder="Enter stock quantity">
+                <input type="number" name="prodStock" required placeholder="Enter stock quantity" oninput="clearStatusMessage()">
             </div>
             <div class="form-group">
                 <label>Product Price:</label>
-                <input type="text" name="prodPrice" required placeholder="Enter price (xx.xx)">
+                <input type="text" name="prodPrice" required placeholder="Enter price RM(xx.xx)" oninput="clearStatusMessage()">
             </div>
             <div class="form-group">
                 <label>Description:</label>
-                <textarea name="description" placeholder="Enter product description"></textarea>
+                <textarea name="description" placeholder="Enter product description" oninput="clearStatusMessage()"></textarea>
             </div>
             <div class="form-group">
                 <label>Image:</label>
@@ -128,22 +128,27 @@ if (isset($_SESSION['status'])) {
             </div>
             <div class="form-group">
                 <label>Category:</label>
-                <select name="categoryID" required>
+                <select name="categoryID" required oninput="clearStatusMessage()">
                     <?php echo $categoryOptions; ?>
                 </select>
             </div>
             <div class="form-actions">
-                <div class="btn-group">
-                    <a href="create_product.php" class="submit-btn">Create Product</a>
-                    <a href="staffdashboard.php" class="back-btn">Back to dashboard</a>
-                    <a href="logout.php" class="logout-btn">Logout</a>
-                </div>
+            <div class="btn-group">
+                <input type="submit" value="Create Product" class="button"><br>
+                <a href="staffdashboard.php" class="button">Back to dashboard</a>
+                <a href="logout.php" class="button">Logout</a>
+            </div>
             </div>
         </form>
     </div>
+
+    <script>
+        function clearStatusMessage() { //clear the error message when staff input again
+            var statusMessage = document.querySelector('.status-message');
+            if (statusMessage) {
+                statusMessage.textContent = '';
+            }       
+        }
+    </script>
 </body>
 </html>
-
-<?php if ($status != ""): ?>
-    <p><?php echo $status; ?></p>
-<?php endif; ?>
