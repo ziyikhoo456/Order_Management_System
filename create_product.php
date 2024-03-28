@@ -90,23 +90,57 @@ if (isset($_SESSION['status'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/create.css" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <title>Create Product</title>
+    <link rel="icon" href="img/logo2.png" type="image/png">
+
 </head>
 <body>
-    <h2>Create New Product</h2>
-    <form action="" enctype="multipart/form-data" method="post">
-        <input type="hidden" name="action" value="create">
-        Product Name: <input type="text" name="prodName" required><br>
-        Product Stock: <input type="number" name="prodStock" required><br>
-        Product Price: <input type="text" name="prodPrice" required><br>
-        Description: <textarea name="description"></textarea><br>
-        Image: <input type="file" name="imageFile" required><br>
-        Category: <select name="categoryID" required>
-        <?php echo $categoryOptions; ?></select><br>
-        <input type="submit" value="Create Product" ><br>
-        <a href="staffdashboard.php">Back to dashboard</a>
-        <a href="logout.php">Logout</a>
-    </form>
+    <div class="create-product-container">
+        <h2 class="form-title">Create New Product</h2>
+        <?php if ($status != ""): ?>
+            <p class="status-message"><?php echo $status; ?></p>
+        <?php endif; ?>
+        <form action="" enctype="multipart/form-data" method="post" class="product-form">
+            <input type="hidden" name="action" value="create">
+            <div class="form-group">
+                <label>Product Name:</label>
+                <input type="text" name="prodName" required placeholder="Enter product name">
+            </div>
+            <div class="form-group">
+                <label>Product Stock:</label>
+                <input type="number" name="prodStock" required placeholder="Enter stock quantity">
+            </div>
+            <div class="form-group">
+                <label>Product Price:</label>
+                <input type="text" name="prodPrice" required placeholder="Enter price (xx.xx)">
+            </div>
+            <div class="form-group">
+                <label>Description:</label>
+                <textarea name="description" placeholder="Enter product description"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Image:</label>
+                <input type="file" name="imageFile" required>
+            </div>
+            <div class="form-group">
+                <label>Category:</label>
+                <select name="categoryID" required>
+                    <?php echo $categoryOptions; ?>
+                </select>
+            </div>
+            <div class="form-actions">
+                <div class="btn-group">
+                    <a href="create_product.php" class="submit-btn">Create Product</a>
+                    <a href="staffdashboard.php" class="back-btn">Back to dashboard</a>
+                    <a href="logout.php" class="logout-btn">Logout</a>
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
 
