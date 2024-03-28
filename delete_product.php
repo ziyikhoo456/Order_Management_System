@@ -64,10 +64,14 @@ if (isset($_SESSION['status'])) {
     <link rel="icon" href="img/logo2.png" type="image/png">
 </head>
 <body>
+<div class="title-container">
 <h2>Delete Product</h2>
+</div>
+        <div class="status-message-container">
         <?php if ($status != ""): ?>
             <p class="status-message"><?php echo $status; ?></p>
         <?php endif; ?>
+        </div>
 <div class="table-responsive">
 <table>
     <thead>
