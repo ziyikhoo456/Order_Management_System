@@ -29,7 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     else {
         //staff not found 
         $_SESSION['error'] = "Invalid staff credentials. Please try again or login as user.";
-        header("Location: staff-login.php");
+        $_SESSION['show_staff_login'] = true;
+        header("Location: register.php#staffLoginRadio");
         exit();
     }
 }

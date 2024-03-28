@@ -1,5 +1,12 @@
 <?php 
     session_start();
+
+    if (isset($_SESSION['show_staff_login'])) {
+        $show_staff_login = $_SESSION['show_staff_login'];
+    } else {
+        $show_staff_login = false;
+    }
+    unset($_SESSION['show_staff_login']);
 ?>
 
 <!DOCTYPE html>
@@ -99,6 +106,8 @@
 
             ?>
             <div class="container">
+                <input type="radio" name="formSwitch" id="userLoginRadio" class="form-switcher" <?php echo !$show_staff_login ? 'checked' : '' ?> hidden>
+                <input type="radio" name="formSwitch" id="staffLoginRadio" class="form-switcher" <?php echo $show_staff_login ? 'checked' : '' ?> hidden>
                 <input type="checkbox" id="flip">
                 <div class="cover">
                 <div class="front">
@@ -141,9 +150,32 @@
                         </div>
                         <div class="text sign-up-text">Don't have an account? <label for="flip">Sign up now</label></div>
                         </div>
-                        <div class="text sign-up-text">Already a staff? <label>Log in as staff here</label></div>
+                        <div class="text sign-up-text">Already a staff? <label for="staffLoginRadio">Log in as staff here</label></div>
                     </form>
                 </div>
+
+                    <div class="staff-login-form">
+                    <div class="title">Staff Login</div>
+                    <form action="staff.php" method="post" name="staff_login">
+                        <input type="hidden" name="action" value="login">
+                        <div class="input-box">
+                            <i class="fas fa-user"></i>
+                            <input type="text" name="staffname" placeholder="Enter your staff name" required>
+                        </div>
+                        <div class="input-box">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" name="password" placeholder="Enter your password" required>
+                        </div>
+                            <?php if (isset($_SESSION['error'])): ?>
+                                <p style="color: red;"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
+                            <?php endif; ?>
+                        <div class="button input-box">
+                            <input type="submit" value="Login">
+                        </div>
+                        <div class="text sign-up-text">Already a user? <label for="userLoginRadio">Log in as user here</label></div>
+                    </form>
+                    </div>
+
                     <div class="signup-form">
                     <div class="title">Signup</div>
                     <form action="#" method="post" name="register">

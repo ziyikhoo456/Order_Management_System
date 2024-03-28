@@ -103,7 +103,8 @@ body{
   justify-content: space-between;
 }
 .form-content .login-form,
-.form-content .signup-form{
+.form-content .signup-form,
+.form-content .staff-login-form{
   width: calc(100% / 2 - 25px);
 }
 .forms .form-content .title{
@@ -196,12 +197,27 @@ body{
 .container #flip{
   display: none;
 }
+.staff-login-form {
+  display: none;
+}
+#userLoginRadio:checked ~ .forms .login-form {
+  display: block; 
+}
+#userLoginRadio:checked ~ .forms .staff-login-form,
+#staffLoginRadio:checked ~ .forms .login-form,
+#staffLoginRadio:checked ~ .forms .signup-form {
+  display: none; 
+}
+#staffLoginRadio:checked ~ .forms .staff-login-form {
+  display: block; 
+}
 @media (max-width: 730px) {
   .container .cover{
     display: none;
   }
   .form-content .login-form,
-  .form-content .signup-form{
+  .form-content .signup-form,
+  .form-content .staff-login-form{
     width: 100%;
   }
   .form-content .signup-form{
@@ -211,6 +227,16 @@ body{
     display: block;
   }
   .container #flip:checked ~ .forms .login-form{
+    display: none;
+  }
+  #userLoginRadio:checked ~ .forms .form-content .staff-login-form {
+    display: none;
+  }
+  #staffLoginRadio:checked ~ .forms .form-content .staff-login-form {
+    display: block;
+  }
+  #staffLoginRadio:checked ~ .forms .form-content .login-form,
+  #staffLoginRadio:checked ~ .forms .form-content .signup-form {
     display: none;
   }
 }
