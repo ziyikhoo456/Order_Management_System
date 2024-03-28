@@ -5,7 +5,7 @@ session_start();
 $inactive = 300; //5(min)*60 = 300 seconds
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true || !isset($_SESSION['staffName'])) {
-    header("Location: register.php");
+    header("Location: staff_login.php");
     exit();
 }
 
@@ -13,7 +13,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true || !isset($_
 if (isset($_SESSION['last_log_in']) && (time() - $_SESSION['last_log_in']) > $inactive) {
 
     session_destroy(); //log staff out 
-    echo "<script>alert('Due to inactivity, you have been logged out.'); window.location.href='register.php';</script>";
+    echo "<script>alert('Due to inactivity, you have been logged out.'); window.location.href='staff_login.php';</script>";
     exit();
 }
 

@@ -40,16 +40,18 @@
 
                     <div class="input-box">
                         <i class="fas fa-envelope"></i>
-                        <input type="text" name="email" placeholder="Enter your email" required>
+                        <input type="text" name="email" placeholder="Enter your email" required oninput="clearErrorMessage()">
                     </div>
                     <div class="input-box">
                         <i class="fas fa-lock"></i>
-                        <input type="password" id ="loginPassword" name="password" placeholder="Enter your password" required>
+                        <input type="password" id ="loginPassword" name="password" placeholder="Enter your password" required oninput="clearErrorMessage()">
                         <span class="input-group-addon border-0 opacityInput" id="loginIconPassword">
                             <u><i class="fa fa-eye text-white" style="cursor: pointer"></i></u>
                      </span>
                     </div>
-                    <div class="text"><a href="#">Forgot password?</a></div>
+                    <?php if (isset($_SESSION['error'])): ?>
+                        <p style="color: red;"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
+                    <?php endif; ?>
                     <div class="button input-box">
                         <input type="submit" value="Submit">
                     </div>
