@@ -5,7 +5,7 @@ session_start();
 $inactive = 300; //5(min)*60 = 300 seconds
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true || !isset($_SESSION['staffName'])) {
-    header("Location: staff-login.php");
+    header("Location: register.php");
     exit();
 }
 
@@ -13,7 +13,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true || !isset($_
 if (isset($_SESSION['last_log_in']) && (time() - $_SESSION['last_log_in']) > $inactive) {
 
     session_destroy(); //log staff out 
-    echo "<script>alert('Due to inactivity, you have been logged out.'); window.location.href='staff-login.php';</script>";
+    echo "<script>alert('Due to inactivity, you have been logged out.'); window.location.href='register.php';</script>";
     exit();
 }
 
@@ -22,48 +22,37 @@ $_SESSION['last_log_in'] = time();  //update last activity time after inactivity
 ?>
 
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Ogani Template">
-    <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ELECPRO</title>
+    <link rel="stylesheet" href="css/dashboard.css" type="text/css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <title>Staff Dashboard | ELECPRO</title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
-
-    <!-- for client-side check of inactivity (request once user(staff) did not make any movement(trigger the inactivity function))  -->
-    <script>
+       <!-- for client-side check of inactivity (request once user(staff) did not make any movement(trigger the inactivity function))  -->
+       <script>
         setTimeout(function()
         {
             alert('Due to inactivity, you have been logged out.');
-            window.location.href = "staff-login.php";
+            window.location.href = "register.php";
         }, 300000); //milliseconds, 1seconds = 10000ms
-    </script> 
-
+        </script> 
 </head>
 
 <body>
-    <h2>Welcome back <?php echo $_SESSION['staffName']; ?></h2>
-    <a href="create_product.php">Create New Product</a><br>
-    <a href="update_product.php">Edit Product</a><br>
-    <a href="view_product.php">View Product</a><br>
-    <a href="delete_product.php">Delete Product</a><br>
-    <a href="logout.php">Logout</a>
-
+    <div class="dashboard-container">
+    <h1 class="dashboard-title">Staff Dashboard</h1>
+        <h2>Welcome back, <?php echo htmlspecialchars($_SESSION['staffName']); ?>!</h2>
+        <div class="dashboard-buttons">
+        <a href="create_product.php" class="dashboard-button create">Create New Product</a>
+        <a href="update_product.php" class="dashboard-button update">Edit Product</a>
+        <a href="view_product.php" class="dashboard-button view">View Product</a>
+        <a href="delete_product.php" class="dashboard-button delete">Delete Product</a>
+        <a href="logout.php" class="dashboard-button logout">Logout</a>
+    </div>
+    </div>
     <!-- Inactivity logout, no remember me & cookie set as for more secure log in of staff -->
-    
 </body>
+</html>
