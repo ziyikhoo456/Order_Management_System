@@ -119,9 +119,11 @@
                     </div>
                 </div>
 
-                 <!-- Login Section Begin -->
+                
                 <div class="forms">
                     <div class="form-content">
+
+                        <!-- Login Section Begin -->
                         <div class="login-form">
                             <div class="title">Login</div>
                             <form action="#" method="post" name="login">
@@ -197,10 +199,10 @@
                                 </div>
                             </form>
                         </div>
+                        <!-- Register Section End -->
+                        
                     </div>
                 </div>
-                <!-- Register Section End -->
-
             </div>
             
             <?php 
