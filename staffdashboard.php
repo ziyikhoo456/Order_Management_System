@@ -28,6 +28,7 @@ $_SESSION['last_log_in'] = time();  //update last activity time after inactivity
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/dashboard.css" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <title>Staff Dashboard | ELECPRO</title>
 
@@ -46,12 +47,22 @@ $_SESSION['last_log_in'] = time();  //update last activity time after inactivity
     <h1 class="dashboard-title">Staff Dashboard</h1>
         <h2>Welcome back, <?php echo htmlspecialchars($_SESSION['staffName']); ?>!</h2>
         <div class="dashboard-buttons">
-        <a href="create_product.php" class="dashboard-button create">Create New Product</a>
-        <a href="update_product.php" class="dashboard-button update">Edit Product</a>
-        <a href="view_product.php" class="dashboard-button view">View Product</a>
-        <a href="delete_product.php" class="dashboard-button delete">Delete Product</a>
-        <a href="logout.php" class="dashboard-button logout">Logout</a>
-    </div>
+        <a href="create_product.php" class="dashboard-button create">
+        Create New Product <i class="fa fa-plus-circle"></i>
+        </a>
+        <a href="update_product.php" class="dashboard-button update">
+        Edit Product <i class="fa fa-edit"></i>
+        </a>
+        <a href="view_product.php" class="dashboard-button view">
+        View Product <i class="fa fa-eye"></i>
+        </a>
+        <a href="delete_product.php" class="dashboard-button delete">
+        Delete Product <i class="fa fa-trash"></i> 
+        </a>
+        <a href="logout.php" class="dashboard-button logout">
+        Logout <i class="fa fa-sign-out"></i> 
+        </a>
+        </div>
     </div>
     <!-- Inactivity logout, no remember me & cookie set as for more secure log in of staff -->
 </body>

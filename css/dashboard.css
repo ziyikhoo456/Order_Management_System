@@ -42,6 +42,8 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
+    justify-content: center;
 }
 
 .dashboard-button {
@@ -57,10 +59,13 @@ h1 {
     transition: 0.3s ease;
     width: 100%;
 }
+.dashboard-button i {
+    margin-right: 8px; 
+}
 
 .dashboard-button.create { background-color: #4CAF50; }
 .dashboard-button.update { background-color: #2196F3; }
-.dashboard-button.view   { background-color: #FFC107; }
+.dashboard-button.view   { background-color: #FFA500; }
 .dashboard-button.delete { background-color: #f44336; }
 .dashboard-button.logout { background-color: #607D8B; }
 
