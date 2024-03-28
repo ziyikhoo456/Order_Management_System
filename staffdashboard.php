@@ -32,15 +32,6 @@ $_SESSION['last_log_in'] = time();  //update last activity time after inactivity
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <title>Staff Dashboard | ELECPRO</title>
     <link rel="icon" href="img/logo2.png" type="image/png">
-
-       <!-- for client-side check of inactivity (request once user(staff) did not make any movement(trigger the inactivity function))  -->
-       <script>
-        setTimeout(function()
-        {
-            alert('Due to inactivity, you have been logged out.');
-            window.location.href = "register.php";
-        }, 300000); //milliseconds, 1seconds = 10000ms
-        </script> 
 </head>
 
 <body>
@@ -51,11 +42,11 @@ $_SESSION['last_log_in'] = time();  //update last activity time after inactivity
         <a href="create_product.php" class="dashboard-button create">
         Create New Product <i class="fa fa-plus-circle"></i>
         </a>
-        <a href="update_product.php" class="dashboard-button update">
-        Edit Product <i class="fa fa-edit"></i>
-        </a>
         <a href="view_product.php" class="dashboard-button view">
         View Product <i class="fa fa-eye"></i>
+        </a>
+        <a href="update_product.php" class="dashboard-button update">
+        Edit Product <i class="fa fa-edit"></i>
         </a>
         <a href="delete_product.php" class="dashboard-button delete">
         Delete Product <i class="fa fa-trash"></i> 

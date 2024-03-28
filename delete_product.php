@@ -60,6 +60,9 @@ if (isset($_SESSION['status'])) {
 </head>
 <body>
 <h2>Delete Product</h2>
+        <?php if ($status != ""): ?>
+            <p class="status-message"><?php echo $status; ?></p>
+        <?php endif; ?>
 <table>
     <thead>
         <tr>
@@ -96,6 +99,3 @@ if (isset($_SESSION['status'])) {
 </body>
 </html>
 
-<?php if ($status != ""): ?>
-    <p><?php echo $status; ?></p>
-<?php endif; ?>

@@ -119,12 +119,21 @@ if (isset($_SESSION['status'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/update.css" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <title>Update Products</title>
+    <link rel="icon" href="img/logo2.png" type="image/png">
 </head>
 <body>
-<h2>Update Product</h2>
-<table>
-    <thead>
+    <div class="update-product-container">
+        <h2>Update Product</h2>
+        <?php if ($status != ""): ?>
+            <p class="status-message"><?php echo $status; ?></p>
+        <?php endif; ?>
+        <table>
+        <thead>
         <tr>
             <th>Product Name</th>
             <th>Product Stock</th>
@@ -134,8 +143,8 @@ if (isset($_SESSION['status'])) {
             <th>Category</th>
             <th>Actions</th>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
         <?php while($product = mysqli_fetch_assoc($products)): ?> <!-- fetching product row from product table  -->
             <tr>
                 <form method="post" enctype="multipart/form-data">
@@ -143,7 +152,12 @@ if (isset($_SESSION['status'])) {
                     <td><input type="number" name="prodStock" value="<?php echo $product['prodStock']; ?>"></td>
                     <td><input type="text" name="prodPrice" value="<?php echo $product['prodPrice']; ?>"></td>
                     <td><textarea name="description"><?php echo htmlspecialchars($product['description']); ?></textarea></td>
-                    <td><?php echo htmlspecialchars($product['imageName']); ?> <input type="file" name="newImageFile"></td>
+                    <td>
+                        <div class="file-input-container">
+                            <label for="file-upload"><?php echo htmlspecialchars($product['imageName']); ?></label>
+                            <input type="file" name="newImageFile">
+                        </div>
+                    </td>
                     <td>
                         <select name="categoryID"> <!-- instead of showing categoryID, show the category name -->
                             <?php echo str_replace("value='" . $product['categoryID'] . "'", "value='" . $product['categoryID'] . "' selected", $categoryOptions); ?>
@@ -156,13 +170,12 @@ if (isset($_SESSION['status'])) {
                 </form>
             </tr>
          <?php endwhile; ?> <!-- flag to end the while loop, if not infinite looping  -->
-    </tbody>
-</table>
-    <a href="staffdashboard.php">Back to dashboard</a>
-    <a href="logout.php">Logout</a>
+        </tbody>
+        </table>
+        <div class="btn-container">
+            <a href="staffdashboard.php" class="button">Back to dashboard</a>
+            <a href="logout.php" class="button">Logout</a>
+        </div>
+    </div>
 </body>
 </html>
-
-<?php if ($status != ""): ?>
-    <p><?php echo $status; ?></p>
-<?php endif; ?>
