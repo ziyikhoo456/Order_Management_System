@@ -4,7 +4,7 @@ require('./config/constant.php');
 session_start();
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true || !isset($_SESSION['staffName'])) {
-    header("Location: register.php");
+    header("Location: staff_login.php");
     exit();
 }
 

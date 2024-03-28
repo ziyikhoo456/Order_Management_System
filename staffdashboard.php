@@ -4,20 +4,20 @@
 
     $inactive = 300; //5(min)*60 = 300 seconds
 
-    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true || !isset($_SESSION['staffName'])) {
-        header("Location: register.php");
-        exit();
-    }
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true || !isset($_SESSION['staffName'])) {
+    header("Location: staff_login.php");
+    exit();
+}
 
     //server-side check of inactivity (only making any request to server will respond(trigger the inactivity))
     if (isset($_SESSION['last_log_in']) && (time() - $_SESSION['last_log_in']) > $inactive) {
 
-        session_destroy(); //log staff out 
-        echo "<script>alert('Due to inactivity, you have been logged out.'); window.location.href='register.php';</script>";
-        exit();
-    }
-    
-    $_SESSION['last_log_in'] = time();  //update last activity time after inactivity check
+    session_destroy(); //log staff out 
+    echo "<script>alert('Due to inactivity, you have been logged out.'); window.location.href='staff_login.php';</script>";
+    exit();
+}
+
+$_SESSION['last_log_in'] = time();  //update last activity time after inactivity check
 
 ?>
 
