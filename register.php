@@ -97,6 +97,12 @@
 
         }else{
 
+            //If session is expired, alert user about it
+            if (isset($_GET['session_expired']) && $_GET['session_expired'] == 1) {
+                echo "<script>alert('Your session has expired. Please log in again.');</script>";
+                session_destroy();
+            }
+
             ?>
            
             <div class="container">
