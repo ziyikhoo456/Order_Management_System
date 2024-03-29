@@ -171,8 +171,8 @@ if (isset($_SESSION['status'])) {
             <tr>
                 <form method="post" enctype="multipart/form-data">
                     <td><input type="text" name="prodName" value="<?php echo htmlspecialchars($product['prodName']); ?>"></td>
-                    <td><input type="number" name="prodStock" value="<?php echo $product['prodStock']; ?>"></td>
-                    <td><input type="number" name="prodPrice" value="<?php echo $product['prodPrice']; ?>"></td>
+                    <td><input type="number" name="prodStock" value="<?php echo $product['prodStock']; ?>" min="1" max="100"></td>
+                    <td><input type="number" name="prodPrice" value="<?php echo $product['prodPrice']; ?>" step="0.01"></td>
                     <td><textarea name="shortDesc"><?php echo htmlspecialchars($product['shortDesc']); ?></textarea></td>
                     <td><textarea name="longDesc"><?php echo htmlspecialchars($product['longDesc']); ?></textarea></td>
                     <td>

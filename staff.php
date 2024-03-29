@@ -29,9 +29,7 @@
         }  
         else {
             //staff not found 
-        
             $_SESSION['error'] = "Invalid staff credentials. Please try again or login as user.";
-            $_SESSION['show_staff_login'] = true;
             header("Location: staff_login.php");
             exit();
         

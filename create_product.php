@@ -113,11 +113,11 @@ if (isset($_SESSION['status'])) {
             </div>
             <div class="form-group">
                 <label>Product Stock:</label>
-                <input type="number" name="prodStock" required placeholder="Enter stock quantity (1-100)" oninput="clearStatusMessage()">
+                <input type="number" name="prodStock" required placeholder="Enter stock quantity (1-100)" oninput="clearStatusMessage()" min="1" max="100">
             </div>
             <div class="form-group">
                 <label>Product Price:</label>
-                <input type="number" name="prodPrice" required placeholder="Enter price RM(xx.xx)" oninput="clearStatusMessage()">
+                <input type="number" name="prodPrice" required placeholder="Enter price RM(xx.xx)" oninput="clearStatusMessage()" step="0.01">
             </div>
             <div class="form-group">
                 <label>Short Description:</label>
