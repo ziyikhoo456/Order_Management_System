@@ -25,7 +25,8 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
     $prodName = mysqli_real_escape_string($conn, $_POST['prodName']);
     $prodStock = mysqli_real_escape_string($conn, $_POST['prodStock']);
     $prodPrice = mysqli_real_escape_string($conn, $_POST['prodPrice']);
-    $description = mysqli_real_escape_string($conn, $_POST['description']);
+    $shortDesc = mysqli_real_escape_string($conn, $_POST['shortDesc']);
+    $longDesc = mysqli_real_escape_string($conn, $_POST['longDesc']);
     $staffID = $_SESSION['staffID'];
     $categoryID = mysqli_real_escape_string($conn, $_POST['categoryID']);  
     $uploadedFileName = "";
@@ -63,8 +64,8 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
 
     //if status message is empty only create, else no matter what error happen above also able to create
     if (empty($status)) {
-        $insertQuery = "INSERT INTO product (prodName, prodStock, prodPrice, description, imageName, staffID, categoryID) 
-                        VALUES ('$prodName', '$prodStock', '$prodPrice', '$description', '$uploadedFileName', '$staffID', '$categoryID')";
+        $insertQuery = "INSERT INTO product (prodName, prodStock, prodPrice, shortDesc, longDesc, imageName, staffID, categoryID) 
+                        VALUES ('$prodName', '$prodStock', '$prodPrice', '$shortDesc', '$longDesc', '$uploadedFileName', '$staffID', '$categoryID')";
     
         if (mysqli_query($conn, $insertQuery)) {
             $status = "New product created successfully.";
@@ -112,15 +113,19 @@ if (isset($_SESSION['status'])) {
             </div>
             <div class="form-group">
                 <label>Product Stock:</label>
-                <input type="number" name="prodStock" required placeholder="Enter stock quantity" oninput="clearStatusMessage()">
+                <input type="number" name="prodStock" required placeholder="Enter stock quantity (1-100)" oninput="clearStatusMessage()" min="1" max="100">
             </div>
             <div class="form-group">
                 <label>Product Price:</label>
-                <input type="text" name="prodPrice" required placeholder="Enter price RM(xx.xx)" oninput="clearStatusMessage()">
+                <input type="number" name="prodPrice" required placeholder="Enter price RM(xx.xx)" oninput="clearStatusMessage()" step="0.01">
             </div>
             <div class="form-group">
-                <label>Description:</label>
-                <textarea name="description" placeholder="Enter product description" oninput="clearStatusMessage()"></textarea>
+                <label>Short Description:</label>
+                <textarea name="shortDesc" placeholder="Enter brief description of the product" oninput="clearStatusMessage()"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Long Description:</label>
+                <textarea name="longDesc" placeholder="Enter detailed product description" oninput="clearStatusMessage()"></textarea>
             </div>
             <div class="form-group">
                 <label>Image:</label>

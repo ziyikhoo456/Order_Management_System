@@ -64,51 +64,53 @@ if (isset($_SESSION['status'])) {
     <link rel="icon" href="img/logo2.png" type="image/png">
 </head>
 <body>
-<div class="title-container">
-<h2>Delete Product</h2>
-</div>
+<div class="table-responsive">
+    <div class="title-container">
+    <h2>Delete Product</h2>
+    </div>
         <div class="status-message-container">
         <?php if ($status != ""): ?>
             <p class="status-message"><?php echo $status; ?></p>
         <?php endif; ?>
         </div>
-<div class="table-responsive">
 <table>
-    <thead>
-        <tr>
-            <th>Product Name</th>
-            <th>Product Stock</th>
-            <th>Product Price</th>
-            <th>Description</th>
-            <th>Image Name</th>
-            <th>Category</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php while($product = mysqli_fetch_assoc($products)): ?>
-            <tr>
-                <td><?php echo htmlspecialchars($product['prodName']); ?></td>
-                <td><?php echo htmlspecialchars($product['prodStock']); ?></td>
-                <td><?php echo htmlspecialchars($product['prodPrice']); ?></td>
-                <td><?php echo htmlspecialchars($product['description']); ?></td>
-                <td><?php echo htmlspecialchars($product['imageName']); ?></td>
-                <td><?php echo htmlspecialchars($product['catName']); ?></td>
-                <td>
-                    <form method="post" enctype="multipart/form-data" action="">
-                        <input type="hidden" name="ID" value="<?php echo $product['prodID']; ?>">
-                        <input type="submit" name="action" value="Delete" class="delete-btn" onclick="return confirm('Are you sure you want to delete this product?');">
-                    </form>
-                </td>
-            </tr>
-        <?php endwhile; ?>
-    </tbody>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Product Stock</th>
+                    <th>Product Price</th>
+                    <th>Short Description</th>
+                    <th>Long Description</th>
+                    <th>Image Name</th>
+                    <th>Category</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($product = mysqli_fetch_assoc($products)): ?>  
+                    <tr>
+                        <td><?php echo htmlspecialchars($product['prodName']); ?></td>
+                        <td><?php echo htmlspecialchars($product['prodStock']); ?></td>
+                        <td><?php echo htmlspecialchars($product['prodPrice']); ?></td>
+                        <td><div class="shortDesc"><?php echo htmlspecialchars($product['shortDesc']); ?></div></td>
+                        <td><div class="longDesc"><?php echo htmlspecialchars($product['longDesc']); ?></div></td>
+                        <td><?php echo htmlspecialchars($product['imageName']); ?></td>
+                        <td><?php echo htmlspecialchars($product['catName']); ?></td>
+                        <td>
+                            <form method="post" enctype="multipart/form-data" action="">
+                                <input type="hidden" name="ID" value="<?php echo $product['prodID']; ?>">
+                                <input type="submit" name="action" value="Delete" class="delete-btn" onclick="return confirm('Are you sure you want to delete this product?');">
+                            </form>
+                        </td>
+                    </tr>
+                <?php endwhile; ?> 
+            </tbody>
 </table>
-</div>
         <div class="bottom-buttons">
         <a href="staffdashboard.php">Back to dashboard</a>
         <a href="logout.php">Logout</a>
         </div>
+</div>
 </body>
 </html>
 

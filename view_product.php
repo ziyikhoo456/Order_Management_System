@@ -33,7 +33,8 @@ $products = mysqli_query($conn, $query);
                     <th>Product Name</th>
                     <th>Product Stock</th>
                     <th>Product Price</th>
-                    <th>Description</th>
+                    <th>Short Description</th>
+                    <th>Long Description</th>
                     <th>Image Name</th>
                     <th>Category</th>
                 </tr>
@@ -44,7 +45,8 @@ $products = mysqli_query($conn, $query);
                         <td><?php echo htmlspecialchars($product['prodName']); ?></td>
                         <td><?php echo htmlspecialchars($product['prodStock']); ?></td>
                         <td><?php echo htmlspecialchars($product['prodPrice']); ?></td>
-                        <td><?php echo htmlspecialchars($product['description']); ?></td>
+                        <td><div class="shortDesc"><?php echo htmlspecialchars($product['shortDesc']); ?></div></td>
+                        <td><div class="longDesc"><?php echo htmlspecialchars($product['longDesc']); ?></div></td>
                         <td><?php echo htmlspecialchars($product['imageName']); ?></td>
                         <td><?php echo htmlspecialchars($product['catName']); ?></td>
                     </tr>

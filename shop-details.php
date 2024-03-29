@@ -27,7 +27,7 @@
         $prodPrice = $row["prodPrice"];
         $shortDesc = $row["shortDesc"];
         $longDesc = $row["longDesc"];
-        $imgPath = "img/featured/" . $row["imageName"];
+        $imgPath = "img/product/" . $row["imageName"];
         $prodStock = $row["prodStock"];
         $catName = $row["catName"];
     }
