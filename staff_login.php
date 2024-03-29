@@ -55,6 +55,7 @@
                     <div class="button input-box">
                         <input type="submit" value="Submit">
                     </div>
+                    <div class="text sign-up-text">Not a staff? <a href="register.php">Log in as user here</a></div>
                     </div>
                 </form>
             </div>
