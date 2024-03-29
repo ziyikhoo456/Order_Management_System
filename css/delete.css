@@ -1,5 +1,17 @@
-.title-container,
-.status-message-container {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #f4f7fa;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.title-container {
     text-align: center;
 }
 
@@ -9,22 +21,57 @@
     color: red;
 }
 
+.product-list-container {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 80%;
+    max-width: 1200px;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 24px;
+}
+
 table {
-    width: 100%;
-    margin-top: 20px;
+    min-width: 100%;
+    width: auto;
     border-collapse: collapse;
-    background-color: #ffffff;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
 }
 
 th, td {
-    padding: 15px;
     text-align: left;
-    border-bottom: 1px solid #dddddd;
+    padding: 8px;
 }
 
 th {
-    background-color: #f7f7f7;
-    color: #333333;
+    background-color: #d9534f;
+    color: white;
+}
+
+/* set this color evenly */
+tr:nth-child(even){background-color: #f2f2f2} 
+
+.shortDesc
+{
+    max-height: 35px;
+    max-width: 200%;
+    overflow-y: auto;
+    overflow-x: auto; 
+}
+.longDesc { 
+    max-height: 35px; 
+    overflow-y: auto;
+    overflow-x: auto; 
+    text-align: justify; 
 }
 
 .button, .delete-btn {
@@ -57,7 +104,7 @@ th {
 }
 
 .bottom-buttons a {
-    background-color: #f0ad4e; 
+    background-color: #d9534f; 
     color: white;
     padding: 10px 20px;
     border-radius: 4px;
@@ -68,13 +115,24 @@ th {
 }
 
 .bottom-buttons a:hover {
-    background-color: #ec971f; 
+    background-color: #c9302c; 
 }
 
-@media screen and (max-width: 768px) {
+
+@media screen and (max-width: 1200px) {
     table {
-        width: 100%;
         display: block;
         overflow-x: auto;
+        overflow-y: auto;
+        white-space: nowrap;
+    }
+    .shortDesc,
+    .longDesc { 
+        max-height: 35px; 
+        overflow-y: auto;
+        overflow-x: auto; 
+        text-align: justify; 
     }
 }
+
+

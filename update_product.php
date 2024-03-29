@@ -30,7 +30,8 @@ if (isset($_POST['update'])) {
     $prodName = mysqli_real_escape_string($conn, $_POST['prodName']);
     $prodStock = mysqli_real_escape_string($conn, $_POST['prodStock']);
     $prodPrice = mysqli_real_escape_string($conn, $_POST['prodPrice']);
-    $description = mysqli_real_escape_string($conn, $_POST['description']);
+    $shortDesc = mysqli_real_escape_string($conn, $_POST['shortDesc']);
+    $longDesc = mysqli_real_escape_string($conn, $_POST['longDesc']);
     $categoryID = mysqli_real_escape_string($conn, $_POST['categoryID']);
     $imageName = ""; 
 
@@ -88,7 +89,7 @@ if (isset($_POST['update'])) {
         }
     }
 
-    $currentProductQuery = "SELECT prodName, prodStock, prodPrice, description, imageName, categoryID FROM product WHERE prodID = '$productID'";
+    $currentProductQuery = "SELECT prodName, prodStock, prodPrice, shortDesc, longDesc, imageName, categoryID FROM product WHERE prodID = '$productID'";
     $currentProductResult = mysqli_query($conn, $currentProductQuery);
 
     $changesMade = false;
@@ -98,7 +99,8 @@ if (isset($_POST['update'])) {
         if ($currentProductRow['prodName'] !== $prodName ||
             $currentProductRow['prodStock'] !== $prodStock ||
             $currentProductRow['prodPrice'] !== $prodPrice ||
-            $currentProductRow['description'] !== $description ||
+            $currentProductRow['shortDesc'] !== $shortDesc ||
+            $currentProductRow['longDesc'] !== $longDesc ||
             $currentProductRow['imageName'] !== $imageName ||
             $currentProductRow['categoryID'] !== $categoryID) {
             $changesMade = true;
@@ -108,7 +110,7 @@ if (isset($_POST['update'])) {
     if (empty($status) && $changesMade) {
         // Update product in database
         $updateQuery = "UPDATE product 
-                        SET prodName = '$prodName', prodStock = '$prodStock', prodPrice = '$prodPrice', description = '$description', imageName = '$imageName', categoryID = '$categoryID' 
+                        SET prodName = '$prodName', prodStock = '$prodStock', prodPrice = '$prodPrice', shortDesc = '$shortDesc', longDesc = '$longDesc' , imageName = '$imageName', categoryID = '$categoryID' 
                         WHERE prodID = '$productID'";
 
         if (mysqli_query($conn, $updateQuery)) {
@@ -157,7 +159,8 @@ if (isset($_SESSION['status'])) {
             <th>Product Name</th>
             <th>Product Stock</th>
             <th>Product Price</th>
-            <th>Description</th>
+            <th>Short Description</th>
+            <th>Long Description</th>
             <th>Image Name</th>
             <th>Category</th>
             <th>Actions</th>
@@ -169,8 +172,9 @@ if (isset($_SESSION['status'])) {
                 <form method="post" enctype="multipart/form-data">
                     <td><input type="text" name="prodName" value="<?php echo htmlspecialchars($product['prodName']); ?>"></td>
                     <td><input type="number" name="prodStock" value="<?php echo $product['prodStock']; ?>"></td>
-                    <td><input type="text" name="prodPrice" value="<?php echo $product['prodPrice']; ?>"></td>
-                    <td><textarea name="description"><?php echo htmlspecialchars($product['description']); ?></textarea></td>
+                    <td><input type="number" name="prodPrice" value="<?php echo $product['prodPrice']; ?>"></td>
+                    <td><textarea name="shortDesc"><?php echo htmlspecialchars($product['shortDesc']); ?></textarea></td>
+                    <td><textarea name="longDesc"><?php echo htmlspecialchars($product['longDesc']); ?></textarea></td>
                     <td>
                         <div class="file-input-container">
                             <label for="file-upload"><?php echo htmlspecialchars($product['imageName']); ?></label>

@@ -49,7 +49,6 @@
                         <p style="color: red;"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
                     <?php endif; ?>
 
-                    <div class="text"><a href="#">Forgot password?</a></div>
                     <div class="button input-box">
                         <input type="submit" value="Submit">
                     </div>
