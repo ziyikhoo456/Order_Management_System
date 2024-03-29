@@ -108,7 +108,7 @@ if (isset($_SESSION['status'])) {
 </table>
         <div class="bottom-buttons">
         <a href="staffdashboard.php">Back to dashboard</a>
-        <a href="logout.php">Logout</a>
+        <a href="staff_logout.php">Logout</a>
         </div>
 </div>
 </body>

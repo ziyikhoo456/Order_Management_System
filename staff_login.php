@@ -15,7 +15,16 @@
 
 <body>
     <?php
+        $validCode = 'admin@123';
+
         if (isset($_POST['register'])) {
+
+        $staffInputCode = $_POST['inputCode'];
+
+        if ($staffInputCode != $validCode) {
+            echo "<script>alert('Invalid validation code. Please try again.'); window.location.href = 'staff_login.php';</script>";
+            exit();
+        }
     
         $staffName = stripslashes($_REQUEST['staffName']);
         $staffName = mysqli_real_escape_string($conn, $staffName);
@@ -56,7 +65,7 @@
             } else {
                 // In case of an error during insertion
                 echo "<script>alert('Registration failed due to a database error.');
-                    window.location.href = 'staff_register.php';</script>";
+                    window.location.href = 'staff_login.php';</script>";
             }
         }
         } 
@@ -79,8 +88,7 @@
                     <div class="title">Staff Login</div>
                     <form action="staff.php" method="post" name="staff_login">
                     <div class="input-boxes">
-                            <!-- <input type="hidden" name="staff_login" value=3 required> -->
-
+                
                     <div class="input-box">
                         <i class="fas fa-envelope"></i>
                         <input type="text" name="email" placeholder="Enter your email" required>
@@ -101,12 +109,11 @@
                         <input type="submit" value="Submit">
                     </div>
                     <div class="text sign-up-text">Want to be part of us? <label for="flip">Register as staff here</label></div>
-                    <div class="text sign-up-text">Not a staff? <a href="register.php">Log in as user here</a></div>
                     </div>
                     </form>
                 </div>
 
-                <!-- Staff registration -->
+            <!-- Staff registration -->
             <div class="signup-form">
             <div class="title">Staff Registration</div>
                 <form action="" method="post" name="register">
@@ -132,7 +139,7 @@
                             <input type="tel" class="form-control opacityInput border-0 text-white" 
                                     name="contactNo"
                                     pattern="^(\+60(\s+)1)[02-46-9]-*[0-9]{7}$|^(\+60(\s+)1)[1]-*[0-9]{8}$"
-                                    id="phone" placeholder="+60 1________" data-slots="_"  required>
+                                    id="phone" placeholder="+60 1_________" data-slots="_"  required>
                         </div>
                         <div class="input-box">
                         <i class="fas fa-venus-mars"></i>
@@ -145,7 +152,7 @@
                         </div>
                         <div class="input-box">
                             <i class="fas fa-dollar-sign"></i>
-                            <input type="number" name="salary" placeholder="Enter your salary" required>
+                            <input type="number" name="salary" placeholder="Enter your salary" required step="0.01">
                         </div>
                         <div class="input-box">
                             <i class="fas fa-birthday-cake"></i>
@@ -154,6 +161,10 @@
                         <div class="input-box">
                             <i class="fas fa-address-book"></i>
                             <input type="text" name="address" placeholder="Enter your address" required>
+                        </div>
+                        <div class="input-box">
+                            <i class="fas fa-key"></i>
+                            <input type="password" name="inputCode" placeholder="Enter validation code" required>
                         </div>
                         <div class="button input-box">
                             <input type="submit" value="Submit" id="registerBtn">
