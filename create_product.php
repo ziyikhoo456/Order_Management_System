@@ -121,11 +121,11 @@ if (isset($_SESSION['status'])) {
             </div>
             <div class="form-group">
                 <label>Short Description:</label>
-                <textarea name="shortdesc" placeholder="Enter brief description of the product" oninput="clearStatusMessage()"></textarea>
+                <textarea name="shortDesc" placeholder="Enter brief description of the product" oninput="clearStatusMessage()"></textarea>
             </div>
             <div class="form-group">
                 <label>Long Description:</label>
-                <textarea name="longdesc" placeholder="Enter detailed product description" oninput="clearStatusMessage()"></textarea>
+                <textarea name="longDesc" placeholder="Enter detailed product description" oninput="clearStatusMessage()"></textarea>
             </div>
             <div class="form-group">
                 <label>Image:</label>
