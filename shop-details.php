@@ -55,9 +55,6 @@
                 WHERE custID='$custID' AND prodID ='$prodID';";
             $result = mysqli_query($conn, $update) or die(mysqli_error($conn));
 
-            if ($result) {
-                echo "<script>window.location.href = 'shoping-cart.php';</script>";
-            }
         } else {
 
             //Add the product into cart if current product has not been added
@@ -66,10 +63,10 @@
             $query = "INSERT into `cart` (custID, prodID, prodQuantity)
                         VALUES ('$custID', '$prodID', '$quantity')";
             $result = mysqli_query($conn, $query);
-
-            if ($result) {
-                echo "<script>window.location.href = 'shoping-cart.php';</script>";
-            }
+        }
+        
+        if ($result) {
+            echo "<script>window.location.href = 'shoping-cart.php';</script>";
         }
     }
 ?>
