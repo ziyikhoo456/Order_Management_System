@@ -1,4 +1,6 @@
 <?php
+
+    //Verify user session and open database connection
     include('auth.php');
     require('config/constant.php');
 
@@ -8,23 +10,31 @@
     $currencySymbol = "RM";
     $total = 0;
 
+    //Get all items from Cart for this particular customer
     $sel_query="SELECT * FROM cart WHERE custID='$custID';";
     $result = mysqli_query($conn,$sel_query);
     $count = mysqli_num_rows($result);
 
+    //For each cart item
     while($row = mysqli_fetch_assoc($result)) {
         $sqlcartprod = mysqli_query($conn,"SELECT * FROM product WHERE prodID='".$row["prodID"]."' ");
         $rowcartprod = mysqli_fetch_array($sqlcartprod);
+
+        //If product stock is 0, set the cart item quantity as 0 also
         if($rowcartprod['prodStock']==0){
             $update="UPDATE cart set prodQuantity='".$rowcartprod['prodStock']."' WHERE custID='$custID' AND prodID ='".$row['prodID']."' ;";
             mysqli_query($conn, $update) or die(mysqli_error($conn));
             $row['prodQuantity']=$rowcartprod['prodStock'];
         }
+
+        //If the product stock is less than the cart item quantity, update the cart item quantity to the maximum stock number
         else if($rowcartprod['prodStock']<$row['prodQuantity']){
             $update="UPDATE cart set prodQuantity='".$rowcartprod['prodStock']."' WHERE custID='$custID' AND prodID ='".$row['prodID']."' ;";
             mysqli_query($conn, $update) or die(mysqli_error($conn));
             $row['prodQuantity']=$rowcartprod['prodStock'];
         }
+
+        //Calcuclate the grand total of the cart
         $total += $rowcartprod['prodPrice']*$row['prodQuantity'];
     }
 ?>
@@ -134,6 +144,8 @@
 
     <!-- Hero Section Begin -->
     <?php 
+
+        //Set class="hero" if it is index.php, else set class="hero hero-normal"
         if (strpos($_SERVER['PHP_SELF'], 'index.php') !== false) {
             echo '<section class="hero">';
         } else {
@@ -186,6 +198,8 @@
                         </div>
                     </div>
                     <?php
+
+                        //Display banner is the page is index.php
                         if (strpos($_SERVER['PHP_SELF'], 'index.php') !== false) {
                             echo '
                             <div class="hero__item set-bg" data-setbg="img/hero/elecBanner.png">

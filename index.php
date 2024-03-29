@@ -1,4 +1,5 @@
-<?php   
+<?php
+    //Include header file to display website
     include('./header.php');
 ?>
 
@@ -60,6 +61,7 @@
             <div class="row featured__filter">
                 <?php 
                 
+                    //Get all product information from database
                     $sel_query="SELECT prodID, prodName, prodStock, prodPrice, imageName, catName
                     FROM Product, Category
                     WHERE Product.categoryID = Category.categoryID
@@ -67,6 +69,7 @@
                     $result = mysqli_query($conn, $sel_query);
                     
 
+                    //Display each product on the website
                     while($row = mysqli_fetch_assoc($result)) {
 
                         $prodID = $row["prodID"];

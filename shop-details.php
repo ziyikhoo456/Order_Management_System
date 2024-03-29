@@ -1,23 +1,17 @@
 <?php
-
-    //include('auth.php');
-    //require('config/constant.php');
     include('header.php');
 
-    //$name = $_SESSION['custName'];
-    //$custID = $_SESSION['custID'];
+    //Check if the prodID is included in the URL
     $prodID = $_GET['prodID'];
 
 
-    // Check if prodID is null or empty
+    // If prodID is null or empty, redirect the user back to index.php
     if (empty($prodID)) {
-        // Redirect to index.php
         header("Location: index.php");
-        exit(); // Make sure to exit after the header redirect
+        exit();
     }
 
-
-
+    //Get the wanted product information
     $prod_query = "SELECT prodID, prodName, prodStock, prodPrice, shortDesc, longDesc, imageName, catName
         FROM Product, Category
         WHERE Product.categoryID = Category.categoryID
@@ -28,6 +22,7 @@
 
     if ($row = mysqli_fetch_assoc($result)) {
 
+        //Store product information to be displayed later
         $prodName = $row["prodName"];
         $prodPrice = $row["prodPrice"];
         $shortDesc = $row["shortDesc"];
@@ -37,18 +32,22 @@
         $catName = $row["catName"];
     }
 
+    //If user want to add the product into cart
     if (isset($_POST['addToCart']) && $_POST['addToCart'] == 1) {
 
+        //Alert the user if the product stock is not enough
         if ($_POST['quantity'] > $prodStock) {
             echo "<script>alert('The quantity of item has exceeded the limit!');
                 window.location.href = 'shop-details.php?prodID=$prodID';</script>";
         }
 
+        //Check if the same product has been added into cart before
         $prod_query = "SELECT * from `cart` WHERE prodID='$prodID' AND custID='$custID'";
         $result = mysqli_query($conn, $prod_query);
         $row = mysqli_fetch_assoc($result);
 
         if ($row > 0) {
+            //Increase the cart product quantity if current product has already been added to cart
             $oriQty = $row["prodQuantity"];
             $quantity = $_POST['quantity'] + $oriQty;
 
@@ -61,6 +60,7 @@
             }
         } else {
 
+            //Add the product into cart if current product has not been added
             $quantity = $_POST['quantity'];
 
             $query = "INSERT into `cart` (custID, prodID, prodQuantity)
