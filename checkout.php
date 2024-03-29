@@ -109,6 +109,13 @@
                                 <ul>
                                     <?php
                                         // get cart info
+                                        if(isset($_SESSION["discount"])){
+                                            $discount = $_SESSION["discount"];
+                                        }
+                                        else{
+                                            $discount = 0;
+                                        }
+
                                         $sql = 
                                         "SELECT p.prodName, p.prodPrice, p.prodID, c.prodQuantity
                                         FROM cart c, product p
@@ -132,7 +139,9 @@
                                                 $productsQuantity[] = $rows['prodQuantity'];
                                             }
                                         }   
-
+                                        $afterDiscount = $grandTotal - $discount;
+                                        $discount = number_format((float)$discount,2,'.','');
+                                        $afterDiscount = number_format((float)$afterDiscount,2,'.','');
                                         $grandTotal = number_format((float)$grandTotal,2,'.','');
 
                                         //insert to order table, insert to payment table, update product stock quantity, empty cart
@@ -185,7 +194,7 @@
 
                                             //insert into payment table
                                             //status = pending/successful/fail/refund
-                                            $sql="INSERT INTO payment (status, grandTotal, paymentDate, note, shipAddress, custID, orderID) VALUES('pending',?,?,?,?,?,?)";
+                                            $sql="INSERT INTO payment (status, grandTotal, paymentDate, note, shipAddress, custID, orderID, discount) VALUES('pending',?,?,?,?,?,?,?)";
                                             //check if the user use another address or any extra note
                                             if(isset($_POST['diff-address'])){
                                                 $address = stripslashes($_POST['diff-address']);
@@ -201,7 +210,7 @@
 
                                             date_default_timezone_set("Asia/Kuala_Lumpur");
                                             $today = date("Y-m-d H:i:s"); 
-                                            $conn->execute_query($sql,[$grandTotal,$today,$note,$address,$id,$maxCount]);
+                                            $conn->execute_query($sql,[$grandTotal,$today,$note,$address,$id,$maxCount,$discount]);
 
                                             //empty customer's cart
                                             $deletesql = "DELETE FROM cart WHERE custID=?";
@@ -215,7 +224,8 @@
                                     ?>
                                 </ul>
                                 <div class="checkout__order__subtotal">Subtotal <span><?php echo"RM $grandTotal";?></span></div>
-                                <div class="checkout__order__total">Total <span><?php echo"RM $grandTotal";?></span></div>
+                                <div class="checkout__order__products">Discount <span><?php echo"RM $discount";?></span></div>
+                                <div class="checkout__order__total">Total <span><?php echo"RM $afterDiscount";?></span></div>
                                
                                 <div class="checkout__input__checkbox">
                                     <label for="payment">

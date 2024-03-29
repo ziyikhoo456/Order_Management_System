@@ -170,6 +170,7 @@
                     if (discount == 'elecpro40'){
                         $('#result').html('RM'+(realtotal-response));
                         $('#discountline').html("<li>Discount <span>RM"+response+"</span></li>")
+                        $_SESSION["discount"] = realtotal-response;
                         $('#invalid_code').html(''); // Update result div with response from server
                     }
                     else{
