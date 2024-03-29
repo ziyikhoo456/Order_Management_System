@@ -76,7 +76,7 @@
                         $catName = $row["catName"];
                         $prodName = $row["prodName"];
                         $prodPrice = $row["prodPrice"];
-                        $imgPath = "img/featured/" . $row["imageName"];
+                        $imgPath = "img/product/" . $row["imageName"];
 
                         echo "
                             <div class=\"col-lg-3 col-md-4 col-sm-6 mix $catName\">
