@@ -55,7 +55,7 @@ $products = mysqli_query($conn, $query);
         </table>
         <div class="btn-container">
             <a href="staffdashboard.php" class="button">Back to dashboard</a>
-            <a href="logout.php" class="button">Logout</a>
+            <a href="staff_logout.php" class="button">Logout</a>
         </div>
     </div>
 </body>

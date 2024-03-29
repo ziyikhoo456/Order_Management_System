@@ -51,7 +51,7 @@ $_SESSION['last_log_in'] = time();  //update last activity time after inactivity
         <a href="delete_product.php" class="dashboard-button delete">
         Delete Product <i class="fa fa-trash"></i> 
         </a>
-        <a href="logout.php" class="dashboard-button logout">
+        <a href="staff_logout.php" class="dashboard-button logout">
         Logout <i class="fa fa-sign-out"></i> 
         </a>
         </div>

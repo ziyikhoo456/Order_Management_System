@@ -154,7 +154,6 @@
                                         <input type="submit" value="Submit">
                                     </div>
                                     <div class="text sign-up-text">Don't have an account? <label for="flip">Sign up now</label></div>
-                                    <div class="text sign-up-text">Already a staff? <a href="staff_login.php">Log in as staff here</a></div>
                                 </div>
                             </form>
                         </div>

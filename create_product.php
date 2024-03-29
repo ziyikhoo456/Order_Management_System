@@ -141,7 +141,7 @@ if (isset($_SESSION['status'])) {
             <div class="btn-group">
                 <input type="submit" value="Create Product" class="button"><br>
                 <a href="staffdashboard.php" class="button">Back to dashboard</a>
-                <a href="logout.php" class="button">Logout</a>
+                <a href="staff_logout.php" class="button">Logout</a>
             </div>
             </div>
         </form>
