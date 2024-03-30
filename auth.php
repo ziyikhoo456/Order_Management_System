@@ -1,8 +1,6 @@
 <?php 
     session_start();
 
-    //testinggggg
-    
     $timeout_duration = 600;
 
     //Check if customer ID and customer name are stored in session and if the session is expired
