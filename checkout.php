@@ -138,7 +138,9 @@
                                                 $productsID[] = $rows['prodID'];
                                                 $productsQuantity[] = $rows['prodQuantity'];
                                             }
-                                        }   
+                                        }
+                                        
+                                        $discount = $grandTotal * $discount;
                                         $afterDiscount = $grandTotal - $discount;
                                         $discount = number_format((float)$discount,2,'.','');
                                         $afterDiscount = number_format((float)$afterDiscount,2,'.','');
