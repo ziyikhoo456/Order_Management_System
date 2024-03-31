@@ -105,7 +105,8 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="checkout__order">
                                 <h4>Your Order</h4>
-                                <div class="checkout__order__products">Products <span>Total</span></div>
+                                <div class="checkout__order__products">Products <span>Total</span>
+                                <div>
                                 <ul>
                                     <?php
                                         // get cart info
@@ -132,7 +133,11 @@
                                                 $prodTotalPrice = number_format((float)( $rows['prodPrice'] * $rows['prodQuantity']), 2, '.', '');
                                                 $grandTotal += $prodTotalPrice;
 
-                                                echo"<li>$prodName <span>RM $prodTotalPrice</span></li>";
+                                                if(strlen($prodName) > 23){
+                                                    $prodName = substr($prodName,0,23) . '...';
+                                                }
+
+                                                echo"<li class='border-bottom''>$prodName <span>RM $prodTotalPrice</span></li>";
 
                                                 //the data in array will be used to store into order table later
                                                 $productsID[] = $rows['prodID'];
@@ -225,7 +230,8 @@
                                         }
                                     ?>
                                 </ul>
-                                <div class="checkout__order__subtotal">Subtotal <span><?php echo"RM $grandTotal";?></span></div>
+                                </div>
+                                <div class="checkout__order__products">Subtotal <span><?php echo"RM $grandTotal";?></span></div>
                                 <div class="checkout__order__products">Discount <span><?php echo"RM $discount";?></span></div>
                                 <div class="checkout__order__total">Total <span><?php echo"RM $afterDiscount";?></span></div>
                                
