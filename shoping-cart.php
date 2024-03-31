@@ -97,7 +97,7 @@
                                         <span class="text-danger">'.$warning.'</span>
                                     </td>
                                     <td class="shoping__cart__total" id="'.$row['prodID'].'price">
-                                        '.$currencySymbol.''.$rowcartprod['prodPrice']*$row['prodQuantity'].'
+                                        '.$currencySymbol.''.number_format((float)$rowcartprod['prodPrice']*$row['prodQuantity'],2,'.','').'
                                     </td>
                                     <td>
                                     <button class="delete-ajax" data-id="'.$row['prodID'].'" onclick="confirmDelete(this);"><span class="icon_close"></span></button>
@@ -114,7 +114,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
-                        <a href="shop-details.php" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+                        <a href="index.php" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
                         <button id="updatecart" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
                             Update Cart</button>
                     </div>
@@ -125,7 +125,7 @@
                             <h5>Discount Codes</h5>
                             <form id="discount_code">
                                 <input type="text" id="discount" name="discount" placeholder="Enter your coupon code">
-                                <input type="hidden" id="realtotal" name="realtotal" value="<?php echo$realtotal; ?>">
+                                <input type="hidden" id="realtotal" name="realtotal" value="<?php echo $realtotal; ?>">
                                 <button type="submit" class="site-btn">APPLY COUPON</button>
                             </form>
                         </div>
@@ -136,9 +136,9 @@
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Subtotal <span><?php echo $currencySymbol . $total;?></span></li>
+                            <li>Subtotal <span><?php echo $currencySymbol . number_format((float)$total,2,'.','');?></span></li>
                             <span id=discountline type = "hidden"></span>
-                            <li>Total <span id="result"><?php echo  $currencySymbol . $realtotal; ?></span></li>
+                            <li>Total <span id="result"><?php echo  $currencySymbol . number_format((float)$realtotal,2,'.',''); ?></span></li>
                         </ul>
                         <a href="checkout.php" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
@@ -167,16 +167,19 @@
                 success: function(response) {
                     var discount = $('#discount').val();
                     var realtotal = $('#realtotal').val();
+                    
                     if (discount == 'elecpro40'){
-                        $('#result').html('RM'+(realtotal-response));
+                        $('#result').html('RM'+(realtotal-response).toFixed(2));
                         $('#discountline').html("<li>Discount <span>RM"+response+"</span></li>")
                         $_SESSION["discount"] = realtotal-response;
                         $('#invalid_code').html(''); // Update result div with response from server
+                        
                     }
                     else{
                         $('#invalid_code').html(response);
                         $('#discountline').html('');
-                        $('#result').html('RM'+realtotal);
+                        $('#result').html('RM'+parseFloat(realtotal).toFixed(2));
+                        
                     }
                 },
                 error: function(xhr, status, error) {

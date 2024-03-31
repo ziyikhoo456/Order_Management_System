@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $discount = $_POST["discount"];
     $realtotal = $_POST["realtotal"];
         if ($discount == "elecpro40"){
-        echo $realtotal*0.4;
+        echo number_format((float)$realtotal*0.4,2,'.','');
         $_SESSION['discount'] = 0.4;
         }
         else{
