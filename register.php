@@ -66,7 +66,7 @@
             $password = mysqli_real_escape_string($conn,$password);
             $contactNum = stripslashes($_REQUEST['contactNum']); 
             $contactNum = mysqli_real_escape_string($conn,$contactNum); 
-            $address = stripslashes($_REQUEST['contactNum']); 
+            $address = stripslashes($_REQUEST['address']); 
             $address = mysqli_real_escape_string($conn,$address);
 
             //Check if same email has been registered before
