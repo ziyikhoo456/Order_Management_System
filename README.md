@@ -1,3 +1,7 @@
 # Online Order Management System 
 
-This project is the assignment of UCCD3243 Server-side Web Application Development. Students requires to develop a web application utilizing PHP with the integration  of relational database where the application will facilitate the 3-tier architecture web  application using XAMPP and MySQL phpMyAdmin.
+A web application utilizing PHP is developed with the integration of relational database where the application will facilitate the 3-tier architecture web application.
+
+- Create a system that allows business premises whose nature of business is to sell electronic accessories (example: phone cases, chargers, cables, headphones, power banks and etc) to sell the products to customers, while effectively monitoring order information.
+- Must implement database connectivity and CRUD functions using PHP and MySQL to demonstrate the function of the online order management system.
+
